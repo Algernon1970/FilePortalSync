@@ -83,6 +83,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>fileportalDataSet1.xsd</DependentUpon>
     </Compile>
+    <Compile Include="fileportalDataSet1.vb">
+      <DependentUpon>fileportalDataSet1.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Form1.vb">
       <SubType>Form</SubType>
     </Compile>
