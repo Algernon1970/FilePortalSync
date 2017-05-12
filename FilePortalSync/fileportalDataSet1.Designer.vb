@@ -375,6 +375,10 @@ Partial Public Class fileportalDataSet1
         
         Private columndeadlineDate As Global.System.Data.DataColumn
         
+        Private columndel As Global.System.Data.DataColumn
+        
+        Private columnnotes As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub New()
@@ -459,6 +463,22 @@ Partial Public Class fileportalDataSet1
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property delColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columndel
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property notesColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnnotes
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -495,9 +515,9 @@ Partial Public Class fileportalDataSet1
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overloads Function AddassignmentRow(ByVal teacher As String, ByVal _class As String, ByVal title As String, ByVal setDate As Date, ByVal deadlineDate As Date) As assignmentRow
+        Public Overloads Function AddassignmentRow(ByVal teacher As String, ByVal _class As String, ByVal title As String, ByVal setDate As Date, ByVal deadlineDate As Date, ByVal del As Boolean, ByVal notes As String) As assignmentRow
             Dim rowassignmentRow As assignmentRow = CType(Me.NewRow,assignmentRow)
-            Dim columnValuesArray() As Object = New Object() {Nothing, teacher, _class, title, setDate, deadlineDate}
+            Dim columnValuesArray() As Object = New Object() {Nothing, teacher, _class, title, setDate, deadlineDate, del, notes}
             rowassignmentRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowassignmentRow)
             Return rowassignmentRow
@@ -532,6 +552,8 @@ Partial Public Class fileportalDataSet1
             Me.columntitle = MyBase.Columns("title")
             Me.columnsetDate = MyBase.Columns("setDate")
             Me.columndeadlineDate = MyBase.Columns("deadlineDate")
+            Me.columndel = MyBase.Columns("del")
+            Me.columnnotes = MyBase.Columns("notes")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -552,6 +574,10 @@ Partial Public Class fileportalDataSet1
             MyBase.Columns.Add(Me.columnsetDate)
             Me.columndeadlineDate = New Global.System.Data.DataColumn("deadlineDate", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columndeadlineDate)
+            Me.columndel = New Global.System.Data.DataColumn("del", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columndel)
+            Me.columnnotes = New Global.System.Data.DataColumn("notes", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnnotes)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnidAssignment}, true))
             Me.columnidAssignment.AutoIncrement = true
             Me.columnidAssignment.AutoIncrementSeed = -1
@@ -567,6 +593,8 @@ Partial Public Class fileportalDataSet1
             Me.columntitle.MaxLength = 50
             Me.columnsetDate.AllowDBNull = false
             Me.columndeadlineDate.AllowDBNull = false
+            Me.columndel.AllowDBNull = false
+            Me.columnnotes.MaxLength = 1000
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -724,6 +752,8 @@ Partial Public Class fileportalDataSet1
         
         Private columndel As Global.System.Data.DataColumn
         
+        Private columnerror As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub New()
@@ -840,6 +870,14 @@ Partial Public Class fileportalDataSet1
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property errorColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnerror
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -876,9 +914,9 @@ Partial Public Class fileportalDataSet1
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overloads Function AddfiledataRow(ByVal parentassignmentRowByFK_filedata_Assignment As assignmentRow, ByVal filename As String, ByVal username As String, ByVal uploaded As Boolean, ByVal audience As String, ByVal marked As Boolean, ByVal dateSub As Date, ByVal sync As Boolean, ByVal del As Boolean) As filedataRow
+        Public Overloads Function AddfiledataRow(ByVal parentassignmentRowByFK_filedata_Assignment As assignmentRow, ByVal filename As String, ByVal username As String, ByVal uploaded As Boolean, ByVal audience As String, ByVal marked As Boolean, ByVal dateSub As Date, ByVal sync As Boolean, ByVal del As Boolean, ByVal _error As Boolean) As filedataRow
             Dim rowfiledataRow As filedataRow = CType(Me.NewRow,filedataRow)
-            Dim columnValuesArray() As Object = New Object() {Nothing, Nothing, filename, username, uploaded, audience, marked, dateSub, sync, del}
+            Dim columnValuesArray() As Object = New Object() {Nothing, Nothing, filename, username, uploaded, audience, marked, dateSub, sync, del, _error}
             If (Not (parentassignmentRowByFK_filedata_Assignment) Is Nothing) Then
                 columnValuesArray(1) = parentassignmentRowByFK_filedata_Assignment(0)
             End If
@@ -920,6 +958,7 @@ Partial Public Class fileportalDataSet1
             Me.columndateSub = MyBase.Columns("dateSub")
             Me.columnsync = MyBase.Columns("sync")
             Me.columndel = MyBase.Columns("del")
+            Me.columnerror = MyBase.Columns("error")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -945,6 +984,11 @@ Partial Public Class fileportalDataSet1
             MyBase.Columns.Add(Me.columnsync)
             Me.columndel = New Global.System.Data.DataColumn("del", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columndel)
+            Me.columnerror = New Global.System.Data.DataColumn("error", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            Me.columnerror.ExtendedProperties.Add("Generator_ColumnPropNameInTable", "errorColumn")
+            Me.columnerror.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "columnerror")
+            Me.columnerror.ExtendedProperties.Add("Generator_UserColumnName", "error")
+            MyBase.Columns.Add(Me.columnerror)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnidFiledata}, true))
             Me.columnidFiledata.AutoIncrement = true
             Me.columnidFiledata.AutoIncrementSeed = -1
@@ -964,6 +1008,7 @@ Partial Public Class fileportalDataSet1
             Me.columndateSub.AllowDBNull = false
             Me.columnsync.AllowDBNull = false
             Me.columndel.AllowDBNull = false
+            Me.columnerror.AllowDBNull = false
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -1504,6 +1549,44 @@ Partial Public Class fileportalDataSet1
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property del() As Boolean
+            Get
+                Return CType(Me(Me.tableassignment.delColumn),Boolean)
+            End Get
+            Set
+                Me(Me.tableassignment.delColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property notes() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableassignment.notesColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'notes' in table 'assignment' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableassignment.notesColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsnotesNull() As Boolean
+            Return Me.IsNull(Me.tableassignment.notesColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetnotesNull()
+            Me(Me.tableassignment.notesColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function GetfiledataRows() As filedataRow()
             If (Me.Table.ChildRelations("FK_filedata_Assignment") Is Nothing) Then
                 Return New filedataRow(-1) {}
@@ -1635,6 +1718,17 @@ Partial Public Class fileportalDataSet1
             End Get
             Set
                 Me(Me.tablefiledata.delColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _error() As Boolean
+            Get
+                Return CType(Me(Me.tablefiledata.errorColumn),Boolean)
+            End Get
+            Set
+                Me(Me.tablefiledata.errorColumn) = value
             End Set
         End Property
         
@@ -1986,13 +2080,16 @@ Namespace fileportalDataSet1TableAdapters
             tableMapping.ColumnMappings.Add("title", "title")
             tableMapping.ColumnMappings.Add("setDate", "setDate")
             tableMapping.ColumnMappings.Add("deadlineDate", "deadlineDate")
+            tableMapping.ColumnMappings.Add("del", "del")
+            tableMapping.ColumnMappings.Add("notes", "notes")
             Me._adapter.TableMappings.Add(tableMapping)
             Me._adapter.DeleteCommand = New Global.System.Data.SqlClient.SqlCommand()
             Me._adapter.DeleteCommand.Connection = Me.Connection
-            Me._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[assignment] WHERE (([idAssignment] = @Original_idAssignment) A"& _ 
-                "ND ([teacher] = @Original_teacher) AND ([class] = @Original_class) AND ([title] "& _ 
-                "= @Original_title) AND ([setDate] = @Original_setDate) AND ([deadlineDate] = @Or"& _ 
-                "iginal_deadlineDate))"
+            Me._adapter.DeleteCommand.CommandText = "DELETE FROM [assignment] WHERE (([idAssignment] = @Original_idAssignment) AND ([t"& _ 
+                "eacher] = @Original_teacher) AND ([class] = @Original_class) AND ([title] = @Ori"& _ 
+                "ginal_title) AND ([setDate] = @Original_setDate) AND ([deadlineDate] = @Original"& _ 
+                "_deadlineDate) AND ([del] = @Original_del) AND ((@IsNull_notes = 1 AND [notes] I"& _ 
+                "S NULL) OR ([notes] = @Original_notes)))"
             Me._adapter.DeleteCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_idAssignment", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "idAssignment", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_teacher", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "teacher", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
@@ -2000,39 +2097,50 @@ Namespace fileportalDataSet1TableAdapters
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_title", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "title", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_setDate", Global.System.Data.SqlDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, 0, 0, "setDate", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_deadlineDate", Global.System.Data.SqlDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, 0, 0, "deadlineDate", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_del", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "del", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_notes", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "notes", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_notes", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "notes", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand = New Global.System.Data.SqlClient.SqlCommand()
             Me._adapter.InsertCommand.Connection = Me.Connection
-            Me._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[assignment] ([teacher], [class], [title], [setDate], [deadline"& _ 
-                "Date]) VALUES (@teacher, @class, @title, @setDate, @deadlineDate);"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT idAss"& _ 
-                "ignment, teacher, class, title, setDate, deadlineDate FROM assignment WHERE (idA"& _ 
-                "ssignment = SCOPE_IDENTITY())"
+            Me._adapter.InsertCommand.CommandText = "INSERT INTO [assignment] ([teacher], [class], [title], [setDate], [deadlineDate],"& _ 
+                " [del], [notes]) VALUES (@teacher, @class, @title, @setDate, @deadlineDate, @del"& _ 
+                ", @notes);"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT idAssignment, teacher, class, title, setDate, deadlineDate, d"& _ 
+                "el, notes FROM assignment WHERE (idAssignment = SCOPE_IDENTITY())"
             Me._adapter.InsertCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@teacher", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "teacher", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@class", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "class", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@title", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "title", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@setDate", Global.System.Data.SqlDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, 0, 0, "setDate", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@deadlineDate", Global.System.Data.SqlDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, 0, 0, "deadlineDate", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@del", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "del", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@notes", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "notes", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand = New Global.System.Data.SqlClient.SqlCommand()
             Me._adapter.UpdateCommand.Connection = Me.Connection
-            Me._adapter.UpdateCommand.CommandText = "UPDATE [dbo].[assignment] SET [teacher] = @teacher, [class] = @class, [title] = @"& _ 
-                "title, [setDate] = @setDate, [deadlineDate] = @deadlineDate WHERE (([idAssignmen"& _ 
-                "t] = @Original_idAssignment) AND ([teacher] = @Original_teacher) AND ([class] = "& _ 
-                "@Original_class) AND ([title] = @Original_title) AND ([setDate] = @Original_setD"& _ 
-                "ate) AND ([deadlineDate] = @Original_deadlineDate));"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT idAssignment, teach"& _ 
-                "er, class, title, setDate, deadlineDate FROM assignment WHERE (idAssignment = @i"& _ 
-                "dAssignment)"
+            Me._adapter.UpdateCommand.CommandText = "UPDATE [assignment] SET [teacher] = @teacher, [class] = @class, [title] = @title,"& _ 
+                " [setDate] = @setDate, [deadlineDate] = @deadlineDate, [del] = @del, [notes] = @"& _ 
+                "notes WHERE (([idAssignment] = @Original_idAssignment) AND ([teacher] = @Origina"& _ 
+                "l_teacher) AND ([class] = @Original_class) AND ([title] = @Original_title) AND ("& _ 
+                "[setDate] = @Original_setDate) AND ([deadlineDate] = @Original_deadlineDate) AND"& _ 
+                " ([del] = @Original_del) AND ((@IsNull_notes = 1 AND [notes] IS NULL) OR ([notes"& _ 
+                "] = @Original_notes)));"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT idAssignment, teacher, class, title, setDate, de"& _ 
+                "adlineDate, del, notes FROM assignment WHERE (idAssignment = @idAssignment)"
             Me._adapter.UpdateCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@teacher", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "teacher", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@class", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "class", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@title", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "title", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@setDate", Global.System.Data.SqlDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, 0, 0, "setDate", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@deadlineDate", Global.System.Data.SqlDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, 0, 0, "deadlineDate", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@del", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "del", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@notes", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "notes", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_idAssignment", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "idAssignment", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_teacher", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "teacher", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_class", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "class", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_title", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "title", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_setDate", Global.System.Data.SqlDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, 0, 0, "setDate", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_deadlineDate", Global.System.Data.SqlDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, 0, 0, "deadlineDate", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_del", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "del", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_notes", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "notes", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_notes", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "notes", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@idAssignment", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "idAssignment", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
         End Sub
         
@@ -2049,13 +2157,13 @@ Namespace fileportalDataSet1TableAdapters
             Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(1) {}
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT idAssignment, teacher, class, title, setDate, deadlineDate FROM dbo.assign"& _ 
-                "ment"
+            Me._commandCollection(0).CommandText = "SELECT idAssignment, teacher, class, title, setDate, deadlineDate, del, notes FRO"& _ 
+                "M assignment"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(1) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(1).Connection = Me.Connection
-            Me._commandCollection(1).CommandText = "SELECT        idAssignment, teacher, class, title, setDate, deadlineDate"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM   "& _ 
-                "         assignment"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (idAssignment = @aid)"
+            Me._commandCollection(1).CommandText = "SELECT idAssignment, teacher, class, title, setDate, deadlineDate, del, notes FRO"& _ 
+                "M assignment WHERE (idAssignment = @aid)"
             Me._commandCollection(1).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@aid", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "idAssignment", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
         End Sub
@@ -2128,7 +2236,7 @@ Namespace fileportalDataSet1TableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, true)>  _
-        Public Overloads Overridable Function Delete(ByVal Original_idAssignment As Integer, ByVal Original_teacher As String, ByVal Original_class As String, ByVal Original_title As String, ByVal Original_setDate As Date, ByVal Original_deadlineDate As Date) As Integer
+        Public Overloads Overridable Function Delete(ByVal Original_idAssignment As Integer, ByVal Original_teacher As String, ByVal Original_class As String, ByVal Original_title As String, ByVal Original_setDate As Date, ByVal Original_deadlineDate As Date, ByVal Original_del As Boolean, ByVal Original_notes As String) As Integer
             Me.Adapter.DeleteCommand.Parameters(0).Value = CType(Original_idAssignment,Integer)
             If (Original_teacher Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Original_teacher")
@@ -2147,6 +2255,14 @@ Namespace fileportalDataSet1TableAdapters
             End If
             Me.Adapter.DeleteCommand.Parameters(4).Value = CType(Original_setDate,Date)
             Me.Adapter.DeleteCommand.Parameters(5).Value = CType(Original_deadlineDate,Date)
+            Me.Adapter.DeleteCommand.Parameters(6).Value = CType(Original_del,Boolean)
+            If (Original_notes Is Nothing) Then
+                Me.Adapter.DeleteCommand.Parameters(7).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(8).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.DeleteCommand.Parameters(7).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(8).Value = CType(Original_notes,String)
+            End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.DeleteCommand.Connection.State
             If ((Me.Adapter.DeleteCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -2166,7 +2282,7 @@ Namespace fileportalDataSet1TableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, true)>  _
-        Public Overloads Overridable Function Insert(ByVal teacher As String, ByVal _class As String, ByVal title As String, ByVal setDate As Date, ByVal deadlineDate As Date) As Integer
+        Public Overloads Overridable Function Insert(ByVal teacher As String, ByVal _class As String, ByVal title As String, ByVal setDate As Date, ByVal deadlineDate As Date, ByVal del As Boolean, ByVal notes As String) As Integer
             If (teacher Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("teacher")
             Else
@@ -2184,6 +2300,12 @@ Namespace fileportalDataSet1TableAdapters
             End If
             Me.Adapter.InsertCommand.Parameters(3).Value = CType(setDate,Date)
             Me.Adapter.InsertCommand.Parameters(4).Value = CType(deadlineDate,Date)
+            Me.Adapter.InsertCommand.Parameters(5).Value = CType(del,Boolean)
+            If (notes Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(6).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(6).Value = CType(notes,String)
+            End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.InsertCommand.Connection.State
             If ((Me.Adapter.InsertCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -2203,7 +2325,23 @@ Namespace fileportalDataSet1TableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
-        Public Overloads Overridable Function Update(ByVal teacher As String, ByVal _class As String, ByVal title As String, ByVal setDate As Date, ByVal deadlineDate As Date, ByVal Original_idAssignment As Integer, ByVal Original_teacher As String, ByVal Original_class As String, ByVal Original_title As String, ByVal Original_setDate As Date, ByVal Original_deadlineDate As Date, ByVal idAssignment As Integer) As Integer
+        Public Overloads Overridable Function Update( _
+                    ByVal teacher As String,  _
+                    ByVal _class As String,  _
+                    ByVal title As String,  _
+                    ByVal setDate As Date,  _
+                    ByVal deadlineDate As Date,  _
+                    ByVal del As Boolean,  _
+                    ByVal notes As String,  _
+                    ByVal Original_idAssignment As Integer,  _
+                    ByVal Original_teacher As String,  _
+                    ByVal Original_class As String,  _
+                    ByVal Original_title As String,  _
+                    ByVal Original_setDate As Date,  _
+                    ByVal Original_deadlineDate As Date,  _
+                    ByVal Original_del As Boolean,  _
+                    ByVal Original_notes As String,  _
+                    ByVal idAssignment As Integer) As Integer
             If (teacher Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("teacher")
             Else
@@ -2221,25 +2359,39 @@ Namespace fileportalDataSet1TableAdapters
             End If
             Me.Adapter.UpdateCommand.Parameters(3).Value = CType(setDate,Date)
             Me.Adapter.UpdateCommand.Parameters(4).Value = CType(deadlineDate,Date)
-            Me.Adapter.UpdateCommand.Parameters(5).Value = CType(Original_idAssignment,Integer)
+            Me.Adapter.UpdateCommand.Parameters(5).Value = CType(del,Boolean)
+            If (notes Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(6).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(6).Value = CType(notes,String)
+            End If
+            Me.Adapter.UpdateCommand.Parameters(7).Value = CType(Original_idAssignment,Integer)
             If (Original_teacher Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Original_teacher")
             Else
-                Me.Adapter.UpdateCommand.Parameters(6).Value = CType(Original_teacher,String)
+                Me.Adapter.UpdateCommand.Parameters(8).Value = CType(Original_teacher,String)
             End If
             If (Original_class Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Original_class")
             Else
-                Me.Adapter.UpdateCommand.Parameters(7).Value = CType(Original_class,String)
+                Me.Adapter.UpdateCommand.Parameters(9).Value = CType(Original_class,String)
             End If
             If (Original_title Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Original_title")
             Else
-                Me.Adapter.UpdateCommand.Parameters(8).Value = CType(Original_title,String)
+                Me.Adapter.UpdateCommand.Parameters(10).Value = CType(Original_title,String)
             End If
-            Me.Adapter.UpdateCommand.Parameters(9).Value = CType(Original_setDate,Date)
-            Me.Adapter.UpdateCommand.Parameters(10).Value = CType(Original_deadlineDate,Date)
-            Me.Adapter.UpdateCommand.Parameters(11).Value = CType(idAssignment,Integer)
+            Me.Adapter.UpdateCommand.Parameters(11).Value = CType(Original_setDate,Date)
+            Me.Adapter.UpdateCommand.Parameters(12).Value = CType(Original_deadlineDate,Date)
+            Me.Adapter.UpdateCommand.Parameters(13).Value = CType(Original_del,Boolean)
+            If (Original_notes Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(14).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(15).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(14).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(15).Value = CType(Original_notes,String)
+            End If
+            Me.Adapter.UpdateCommand.Parameters(16).Value = CType(idAssignment,Integer)
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.UpdateCommand.Connection.State
             If ((Me.Adapter.UpdateCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -2259,8 +2411,8 @@ Namespace fileportalDataSet1TableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
-        Public Overloads Overridable Function Update(ByVal teacher As String, ByVal _class As String, ByVal title As String, ByVal setDate As Date, ByVal deadlineDate As Date, ByVal Original_idAssignment As Integer, ByVal Original_teacher As String, ByVal Original_class As String, ByVal Original_title As String, ByVal Original_setDate As Date, ByVal Original_deadlineDate As Date) As Integer
-            Return Me.Update(teacher, _class, title, setDate, deadlineDate, Original_idAssignment, Original_teacher, Original_class, Original_title, Original_setDate, Original_deadlineDate, Original_idAssignment)
+        Public Overloads Overridable Function Update(ByVal teacher As String, ByVal _class As String, ByVal title As String, ByVal setDate As Date, ByVal deadlineDate As Date, ByVal del As Boolean, ByVal notes As String, ByVal Original_idAssignment As Integer, ByVal Original_teacher As String, ByVal Original_class As String, ByVal Original_title As String, ByVal Original_setDate As Date, ByVal Original_deadlineDate As Date, ByVal Original_del As Boolean, ByVal Original_notes As String) As Integer
+            Return Me.Update(teacher, _class, title, setDate, deadlineDate, del, notes, Original_idAssignment, Original_teacher, Original_class, Original_title, Original_setDate, Original_deadlineDate, Original_del, Original_notes, Original_idAssignment)
         End Function
     End Class
     
@@ -2401,6 +2553,7 @@ Namespace fileportalDataSet1TableAdapters
             tableMapping.ColumnMappings.Add("dateSub", "dateSub")
             tableMapping.ColumnMappings.Add("sync", "sync")
             tableMapping.ColumnMappings.Add("del", "del")
+            tableMapping.ColumnMappings.Add("error", "error")
             Me._adapter.TableMappings.Add(tableMapping)
             Me._adapter.DeleteCommand = New Global.System.Data.SqlClient.SqlCommand()
             Me._adapter.DeleteCommand.Connection = Me.Connection
@@ -2408,7 +2561,8 @@ Namespace fileportalDataSet1TableAdapters
                 "nment] = @Original_idAssignment) AND ([filename] = @Original_filename) AND ([use"& _ 
                 "rname] = @Original_username) AND ([uploaded] = @Original_uploaded) AND ([audienc"& _ 
                 "e] = @Original_audience) AND ([marked] = @Original_marked) AND ([dateSub] = @Ori"& _ 
-                "ginal_dateSub) AND ([sync] = @Original_sync) AND ([del] = @Original_del))"
+                "ginal_dateSub) AND ([sync] = @Original_sync) AND ([del] = @Original_del) AND ([e"& _ 
+                "rror] = @Original_error))"
             Me._adapter.DeleteCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_idFiledata", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "idFiledata", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_idAssignment", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "idAssignment", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
@@ -2420,13 +2574,13 @@ Namespace fileportalDataSet1TableAdapters
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_dateSub", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "dateSub", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_sync", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "sync", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_del", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "del", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_error", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "error", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand = New Global.System.Data.SqlClient.SqlCommand()
             Me._adapter.InsertCommand.Connection = Me.Connection
             Me._adapter.InsertCommand.CommandText = "INSERT INTO [filedata] ([idAssignment], [filename], [username], [uploaded], [audi"& _ 
-                "ence], [marked], [dateSub], [sync], [del]) VALUES (@idAssignment, @filename, @us"& _ 
-                "ername, @uploaded, @audience, @marked, @dateSub, @sync, @del);"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT idFiledat"& _ 
-                "a, idAssignment, filename, username, uploaded, audience, marked, dateSub, sync, "& _ 
-                "del FROM filedata WHERE (idFiledata = SCOPE_IDENTITY())"
+                "ence], [marked], [dateSub], [sync], [del], [error]) VALUES (@idAssignment, @file"& _ 
+                "name, @username, @uploaded, @audience, @marked, @dateSub, @sync, @del, @error);"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT idFiledata, idAssignment, filename, username, uploaded, audience, marked"& _ 
+                ", dateSub, sync, del, error FROM filedata WHERE (idFiledata = SCOPE_IDENTITY())"
             Me._adapter.InsertCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@idAssignment", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "idAssignment", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@filename", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "filename", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
@@ -2437,18 +2591,19 @@ Namespace fileportalDataSet1TableAdapters
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@dateSub", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "dateSub", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@sync", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "sync", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@del", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "del", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@error", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "error", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand = New Global.System.Data.SqlClient.SqlCommand()
             Me._adapter.UpdateCommand.Connection = Me.Connection
             Me._adapter.UpdateCommand.CommandText = "UPDATE [filedata] SET [idAssignment] = @idAssignment, [filename] = @filename, [us"& _ 
                 "ername] = @username, [uploaded] = @uploaded, [audience] = @audience, [marked] = "& _ 
-                "@marked, [dateSub] = @dateSub, [sync] = @sync, [del] = @del WHERE (([idFiledata]"& _ 
-                " = @Original_idFiledata) AND ([idAssignment] = @Original_idAssignment) AND ([fil"& _ 
-                "ename] = @Original_filename) AND ([username] = @Original_username) AND ([uploade"& _ 
-                "d] = @Original_uploaded) AND ([audience] = @Original_audience) AND ([marked] = @"& _ 
-                "Original_marked) AND ([dateSub] = @Original_dateSub) AND ([sync] = @Original_syn"& _ 
-                "c) AND ([del] = @Original_del));"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT idFiledata, idAssignment, filename, use"& _ 
-                "rname, uploaded, audience, marked, dateSub, sync, del FROM filedata WHERE (idFil"& _ 
-                "edata = @idFiledata)"
+                "@marked, [dateSub] = @dateSub, [sync] = @sync, [del] = @del, [error] = @error WH"& _ 
+                "ERE (([idFiledata] = @Original_idFiledata) AND ([idAssignment] = @Original_idAss"& _ 
+                "ignment) AND ([filename] = @Original_filename) AND ([username] = @Original_usern"& _ 
+                "ame) AND ([uploaded] = @Original_uploaded) AND ([audience] = @Original_audience)"& _ 
+                " AND ([marked] = @Original_marked) AND ([dateSub] = @Original_dateSub) AND ([syn"& _ 
+                "c] = @Original_sync) AND ([del] = @Original_del) AND ([error] = @Original_error)"& _ 
+                ");"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT idFiledata, idAssignment, filename, username, uploaded, audience, mar"& _ 
+                "ked, dateSub, sync, del, error FROM filedata WHERE (idFiledata = @idFiledata)"
             Me._adapter.UpdateCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@idAssignment", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "idAssignment", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@filename", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "filename", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
@@ -2459,6 +2614,7 @@ Namespace fileportalDataSet1TableAdapters
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@dateSub", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "dateSub", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@sync", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "sync", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@del", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "del", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@error", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "error", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_idFiledata", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "idFiledata", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_idAssignment", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "idAssignment", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_filename", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "filename", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
@@ -2469,6 +2625,7 @@ Namespace fileportalDataSet1TableAdapters
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_dateSub", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "dateSub", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_sync", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "sync", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_del", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "del", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_error", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "error", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@idFiledata", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "idFiledata", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
         End Sub
         
@@ -2482,11 +2639,11 @@ Namespace fileportalDataSet1TableAdapters
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Private Sub InitCommandCollection()
-            Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(4) {}
+            Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(5) {}
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
             Me._commandCollection(0).CommandText = "SELECT idFiledata, idAssignment, filename, username, uploaded, audience, marked, "& _ 
-                "dateSub, sync, del FROM filedata"
+                "dateSub, sync, del, error FROM filedata"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(1) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(1).Connection = Me.Connection
@@ -2496,21 +2653,28 @@ Namespace fileportalDataSet1TableAdapters
             Me._commandCollection(2) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(2).Connection = Me.Connection
             Me._commandCollection(2).CommandText = "SELECT        idFiledata, idAssignment, filename, username, uploaded, audience, m"& _ 
-                "arked, dateSub, sync, del"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            filedata"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (sync = 1) AND"& _ 
-                " (uploaded = 0) AND (del = 0)"
+                "arked, dateSub, sync, del, error"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            filedata"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (sync ="& _ 
+                " 1) AND (uploaded = 0) AND (del = 0) AND (error = 0)"
             Me._commandCollection(2).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(3) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(3).Connection = Me.Connection
-            Me._commandCollection(3).CommandText = "SELECT        idFiledata, idAssignment, filename, username, uploaded, audience, m"& _ 
-                "arked, dateSub, sync, del"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            filedata"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (uploaded = 1)"& _ 
-                " AND (del = 1)"
+            Me._commandCollection(3).CommandText = "SELECT idFiledata, idAssignment, filename, username, uploaded, audience, marked, "& _ 
+                "dateSub, sync, del, error FROM filedata WHERE (uploaded = 1) AND (del = 1)"
             Me._commandCollection(3).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(4) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(4).Connection = Me.Connection
-            Me._commandCollection(4).CommandText = "UPDATE       filedata"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                uploaded = 1"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (idAssignmen"& _ 
-                "t = @aid); "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)
+            Me._commandCollection(4).CommandText = "UPDATE       filedata"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                error = @state"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (idAssignm"& _ 
+                "ent = @assID); "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)
             Me._commandCollection(4).CommandType = Global.System.Data.CommandType.Text
-            Me._commandCollection(4).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@aid", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "idAssignment", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._commandCollection(4).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@state", Global.System.Data.SqlDbType.Bit, 1, Global.System.Data.ParameterDirection.Input, 0, 0, "error", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(4).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@assID", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "idAssignment", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._commandCollection(5) = New Global.System.Data.SqlClient.SqlCommand()
+            Me._commandCollection(5).Connection = Me.Connection
+            Me._commandCollection(5).CommandText = "UPDATE       filedata"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                uploaded = @state"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (idAssi"& _ 
+                "gnment = @aid);  "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)
+            Me._commandCollection(5).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(5).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@state", Global.System.Data.SqlDbType.Bit, 1, Global.System.Data.ParameterDirection.Input, 0, 0, "uploaded", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(5).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@aid", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "idAssignment", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -2604,7 +2768,7 @@ Namespace fileportalDataSet1TableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, true)>  _
-        Public Overloads Overridable Function Delete(ByVal Original_idFiledata As Integer, ByVal Original_idAssignment As Integer, ByVal Original_filename As String, ByVal Original_username As String, ByVal Original_uploaded As Boolean, ByVal Original_audience As String, ByVal Original_marked As Boolean, ByVal Original_dateSub As Date, ByVal Original_sync As Boolean, ByVal Original_del As Boolean) As Integer
+        Public Overloads Overridable Function Delete(ByVal Original_idFiledata As Integer, ByVal Original_idAssignment As Integer, ByVal Original_filename As String, ByVal Original_username As String, ByVal Original_uploaded As Boolean, ByVal Original_audience As String, ByVal Original_marked As Boolean, ByVal Original_dateSub As Date, ByVal Original_sync As Boolean, ByVal Original_del As Boolean, ByVal Original_error As Boolean) As Integer
             Me.Adapter.DeleteCommand.Parameters(0).Value = CType(Original_idFiledata,Integer)
             Me.Adapter.DeleteCommand.Parameters(1).Value = CType(Original_idAssignment,Integer)
             If (Original_filename Is Nothing) Then
@@ -2627,6 +2791,7 @@ Namespace fileportalDataSet1TableAdapters
             Me.Adapter.DeleteCommand.Parameters(7).Value = CType(Original_dateSub,Date)
             Me.Adapter.DeleteCommand.Parameters(8).Value = CType(Original_sync,Boolean)
             Me.Adapter.DeleteCommand.Parameters(9).Value = CType(Original_del,Boolean)
+            Me.Adapter.DeleteCommand.Parameters(10).Value = CType(Original_error,Boolean)
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.DeleteCommand.Connection.State
             If ((Me.Adapter.DeleteCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -2646,7 +2811,7 @@ Namespace fileportalDataSet1TableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, true)>  _
-        Public Overloads Overridable Function Insert(ByVal idAssignment As Integer, ByVal filename As String, ByVal username As String, ByVal uploaded As Boolean, ByVal audience As String, ByVal marked As Boolean, ByVal dateSub As Date, ByVal sync As Boolean, ByVal del As Boolean) As Integer
+        Public Overloads Overridable Function Insert(ByVal idAssignment As Integer, ByVal filename As String, ByVal username As String, ByVal uploaded As Boolean, ByVal audience As String, ByVal marked As Boolean, ByVal dateSub As Date, ByVal sync As Boolean, ByVal del As Boolean, ByVal _error As Boolean) As Integer
             Me.Adapter.InsertCommand.Parameters(0).Value = CType(idAssignment,Integer)
             If (filename Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("filename")
@@ -2668,6 +2833,7 @@ Namespace fileportalDataSet1TableAdapters
             Me.Adapter.InsertCommand.Parameters(6).Value = CType(dateSub,Date)
             Me.Adapter.InsertCommand.Parameters(7).Value = CType(sync,Boolean)
             Me.Adapter.InsertCommand.Parameters(8).Value = CType(del,Boolean)
+            Me.Adapter.InsertCommand.Parameters(9).Value = CType(_error,Boolean)
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.InsertCommand.Connection.State
             If ((Me.Adapter.InsertCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -2697,6 +2863,7 @@ Namespace fileportalDataSet1TableAdapters
                     ByVal dateSub As Date,  _
                     ByVal sync As Boolean,  _
                     ByVal del As Boolean,  _
+                    ByVal _error As Boolean,  _
                     ByVal Original_idFiledata As Integer,  _
                     ByVal Original_idAssignment As Integer,  _
                     ByVal Original_filename As String,  _
@@ -2707,6 +2874,7 @@ Namespace fileportalDataSet1TableAdapters
                     ByVal Original_dateSub As Date,  _
                     ByVal Original_sync As Boolean,  _
                     ByVal Original_del As Boolean,  _
+                    ByVal Original_error As Boolean,  _
                     ByVal idFiledata As Integer) As Integer
             Me.Adapter.UpdateCommand.Parameters(0).Value = CType(idAssignment,Integer)
             If (filename Is Nothing) Then
@@ -2729,29 +2897,31 @@ Namespace fileportalDataSet1TableAdapters
             Me.Adapter.UpdateCommand.Parameters(6).Value = CType(dateSub,Date)
             Me.Adapter.UpdateCommand.Parameters(7).Value = CType(sync,Boolean)
             Me.Adapter.UpdateCommand.Parameters(8).Value = CType(del,Boolean)
-            Me.Adapter.UpdateCommand.Parameters(9).Value = CType(Original_idFiledata,Integer)
-            Me.Adapter.UpdateCommand.Parameters(10).Value = CType(Original_idAssignment,Integer)
+            Me.Adapter.UpdateCommand.Parameters(9).Value = CType(_error,Boolean)
+            Me.Adapter.UpdateCommand.Parameters(10).Value = CType(Original_idFiledata,Integer)
+            Me.Adapter.UpdateCommand.Parameters(11).Value = CType(Original_idAssignment,Integer)
             If (Original_filename Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Original_filename")
             Else
-                Me.Adapter.UpdateCommand.Parameters(11).Value = CType(Original_filename,String)
+                Me.Adapter.UpdateCommand.Parameters(12).Value = CType(Original_filename,String)
             End If
             If (Original_username Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Original_username")
             Else
-                Me.Adapter.UpdateCommand.Parameters(12).Value = CType(Original_username,String)
+                Me.Adapter.UpdateCommand.Parameters(13).Value = CType(Original_username,String)
             End If
-            Me.Adapter.UpdateCommand.Parameters(13).Value = CType(Original_uploaded,Boolean)
+            Me.Adapter.UpdateCommand.Parameters(14).Value = CType(Original_uploaded,Boolean)
             If (Original_audience Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Original_audience")
             Else
-                Me.Adapter.UpdateCommand.Parameters(14).Value = CType(Original_audience,String)
+                Me.Adapter.UpdateCommand.Parameters(15).Value = CType(Original_audience,String)
             End If
-            Me.Adapter.UpdateCommand.Parameters(15).Value = CType(Original_marked,Boolean)
-            Me.Adapter.UpdateCommand.Parameters(16).Value = CType(Original_dateSub,Date)
-            Me.Adapter.UpdateCommand.Parameters(17).Value = CType(Original_sync,Boolean)
-            Me.Adapter.UpdateCommand.Parameters(18).Value = CType(Original_del,Boolean)
-            Me.Adapter.UpdateCommand.Parameters(19).Value = CType(idFiledata,Integer)
+            Me.Adapter.UpdateCommand.Parameters(16).Value = CType(Original_marked,Boolean)
+            Me.Adapter.UpdateCommand.Parameters(17).Value = CType(Original_dateSub,Date)
+            Me.Adapter.UpdateCommand.Parameters(18).Value = CType(Original_sync,Boolean)
+            Me.Adapter.UpdateCommand.Parameters(19).Value = CType(Original_del,Boolean)
+            Me.Adapter.UpdateCommand.Parameters(20).Value = CType(Original_error,Boolean)
+            Me.Adapter.UpdateCommand.Parameters(21).Value = CType(idFiledata,Integer)
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.UpdateCommand.Connection.State
             If ((Me.Adapter.UpdateCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -2781,6 +2951,7 @@ Namespace fileportalDataSet1TableAdapters
                     ByVal dateSub As Date,  _
                     ByVal sync As Boolean,  _
                     ByVal del As Boolean,  _
+                    ByVal _error As Boolean,  _
                     ByVal Original_idFiledata As Integer,  _
                     ByVal Original_idAssignment As Integer,  _
                     ByVal Original_filename As String,  _
@@ -2790,8 +2961,9 @@ Namespace fileportalDataSet1TableAdapters
                     ByVal Original_marked As Boolean,  _
                     ByVal Original_dateSub As Date,  _
                     ByVal Original_sync As Boolean,  _
-                    ByVal Original_del As Boolean) As Integer
-            Return Me.Update(idAssignment, filename, username, uploaded, audience, marked, dateSub, sync, del, Original_idFiledata, Original_idAssignment, Original_filename, Original_username, Original_uploaded, Original_audience, Original_marked, Original_dateSub, Original_sync, Original_del, Original_idFiledata)
+                    ByVal Original_del As Boolean,  _
+                    ByVal Original_error As Boolean) As Integer
+            Return Me.Update(idAssignment, filename, username, uploaded, audience, marked, dateSub, sync, del, _error, Original_idFiledata, Original_idAssignment, Original_filename, Original_username, Original_uploaded, Original_audience, Original_marked, Original_dateSub, Original_sync, Original_del, Original_error, Original_idFiledata)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -2821,9 +2993,34 @@ Namespace fileportalDataSet1TableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, false)>  _
-        Public Overloads Overridable Function SetUploaded(ByVal aid As Integer) As Integer
+        Public Overloads Overridable Function SetError(ByVal state As Boolean, ByVal assID As Integer) As Integer
             Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(4)
-            command.Parameters(0).Value = CType(aid,Integer)
+            command.Parameters(0).Value = CType(state,Boolean)
+            command.Parameters(1).Value = CType(assID,Integer)
+            Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
+            If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
+                        <> Global.System.Data.ConnectionState.Open) Then
+                command.Connection.Open
+            End If
+            Dim returnValue As Integer
+            Try 
+                returnValue = command.ExecuteNonQuery
+            Finally
+                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
+                    command.Connection.Close
+                End If
+            End Try
+            Return returnValue
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, false)>  _
+        Public Overloads Overridable Function SetUploaded(ByVal state As Boolean, ByVal aid As Integer) As Integer
+            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(5)
+            command.Parameters(0).Value = CType(state,Boolean)
+            command.Parameters(1).Value = CType(aid,Integer)
             Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
             If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then

@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class Form1
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class Form1
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.NotifyIcon1 = New System.Windows.Forms.NotifyIcon(Me.components)
@@ -65,6 +65,7 @@ Partial Class Form1
         '
         Me.TableAdapterManager.assignmentTableAdapter = Me.AssignmentTableAdapter
         Me.TableAdapterManager.BackupDataSetBeforeUpdate = False
+        Me.TableAdapterManager.filecheckTableAdapter = Nothing
         Me.TableAdapterManager.filedataTableAdapter = Me.FiledataTableAdapter
         Me.TableAdapterManager.UpdateOrder = FilePortalSync.fileportalDataSet1TableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete
         '
@@ -74,12 +75,16 @@ Partial Class Form1
         '
         'OutputData
         '
+        Me.OutputData.AllowUserToAddRows = False
         Me.OutputData.AllowUserToDeleteRows = False
         Me.OutputData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.OutputData.Dock = System.Windows.Forms.DockStyle.Fill
         Me.OutputData.Location = New System.Drawing.Point(0, 0)
         Me.OutputData.Name = "OutputData"
         Me.OutputData.ReadOnly = True
+        Me.OutputData.RowHeadersWidth = 60
+        Me.OutputData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
+        Me.OutputData.ShowEditingIcon = False
         Me.OutputData.Size = New System.Drawing.Size(930, 513)
         Me.OutputData.TabIndex = 0
         '
