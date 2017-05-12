@@ -1,16 +1,31 @@
 ﻿Imports AshbyTools
 Imports System.IO
 Imports System.ComponentModel
+Imports System.Security
+Imports System.Xml.Serialization
 
 Public Class Form1
     Dim cancelled As Boolean = False
     Dim displayTable As New DataTable
     Dim displayrow As DataRow
+    Dim library As New Library()
+    Dim settingsFile As String = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) & "\Ashby School\" & My.Resources.settingsFile
 
+#Region "Setup"
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.Icon = My.Resources.portalBlue
         Me.NotifyIcon1.Icon = My.Resources.portalBlue
         Me.NotifyIcon1.Visible = False
+
+        Me.Text = "Assignment File Portal Sync " & My.Resources.Version
+
+        library.URL = My.Resources.LibraryURL
+        library.Share = My.Resources.ShareName
+        library.LocalShare = My.Resources.LocalShare
+        If File.Exists(settingsFile) Then
+            loadLibrary()
+        End If
+
         displayTable.Columns.Add("TimeStamp")
         displayTable.Columns.Add("Username")
         displayTable.Columns.Add("Assignment")
@@ -18,12 +33,6 @@ Public Class Form1
         displayTable.Columns.Add("Destination File")
         displayTable.Columns.Add("Operation")
         displayTable.Columns.Add("Result")
-
-        OutputData.DataSource = displayTable
-        Dim wd As BackgroundWorker = New BackgroundWorker
-        AddHandler wd.DoWork, AddressOf watchdog_DoWork
-        wd.RunWorkerAsync()
-
     End Sub
 
     Private Sub watchdog_DoWork(ByVal sender As Object, ByVal e As DoWorkEventArgs)
@@ -41,7 +50,9 @@ Public Class Form1
             Threading.Thread.Sleep(5000)
         End While
     End Sub
+#End Region
 
+#Region "Sharepoint Handleing"
     Private Sub DeleteFiles()
         Dim deleteFiles As fileportalDataSet1.filedataDataTable = FiledataTableAdapter.GetListToDelete()
         For Each dr As DataRow In deleteFiles.Rows
@@ -64,7 +75,7 @@ Public Class Form1
             newDetailRow("Operation") = "Delete From Sharepoint"
 
 
-            Dim res As String = AshbyTools.FileOperations.deleteFromSP(copyFN, My.Resources.LibraryURL, My.Resources.ShareName, My.Resources.LibraryUsername, Utils.convertToSecureString(My.Resources.LibraryPassword))
+            Dim res As String = AshbyTools.FileOperations.deleteFromSP(copyFN, library.URL, library.Share, library.Username, library.Password)
             newDetailRow("Result") = res
             displayTable.Rows.Add(newDetailRow)
             If res.ToLower.Equals("ok") Then
@@ -85,7 +96,7 @@ Public Class Form1
             Dim assignmentName As String = AssignmentTableAdapter.GetAssignmentByID(assID).Rows(0).Field(Of String)("title")
 
             Dim fileext As String = Path.GetExtension(origFN)
-            Dim copyFN As String = String.Format("{0}{1}{2}", My.Resources.localShare, id, fileext)
+            Dim copyFN As String = String.Format("{0}{1}{2}", library.LocalShare, id, fileext)
 
             Dim newDetailRow As DataRow = displayTable.NewRow()
             newDetailRow("TimeStamp") = Now
@@ -95,7 +106,7 @@ Public Class Form1
             newDetailRow("Destination File") = copyFN
 
             'upload to SP
-            Dim res As String = AshbyTools.FileOperations.copyToSP(copyFN, My.Resources.LibraryURL, My.Resources.ShareName, My.Resources.LibraryUsername, Utils.convertToSecureString(My.Resources.LibraryPassword))
+            Dim res As String = AshbyTools.FileOperations.copyToSP(copyFN, library.URL, library.Share, library.Username, library.Password)
             If res.ToLower.Equals("ok") Then
                 FiledataTableAdapter.SetUploaded(True, assID)
                 File.Delete(copyFN)
@@ -109,6 +120,7 @@ Public Class Form1
             Me.Refresh()
         Next
     End Sub
+#End Region
 
 #Region "Screen Handleing"
     Private Sub NotifyIcon1_MouseDoubleClick(sender As Object, e As MouseEventArgs) Handles NotifyIcon1.MouseDoubleClick
@@ -123,6 +135,40 @@ Public Class Form1
             Me.Visible = False
             Me.NotifyIcon1.Visible = True
         End If
+    End Sub
+
+#End Region
+
+#Region "Menu Handleing"
+
+    Private Sub StartToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles StartToolStripMenuItem.Click
+        MainMenuStrip.Visible = False
+        OutputData.DataSource = displayTable
+        Dim wd As BackgroundWorker = New BackgroundWorker
+        AddHandler wd.DoWork, AddressOf watchdog_DoWork
+        wd.RunWorkerAsync()
+    End Sub
+
+    Private Sub EditDefaultsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EditDefaultsToolStripMenuItem.Click
+        Dim defaultsForm As New DefaultsForm(library)
+        Dim res As DialogResult = defaultsForm.ShowDialog()
+        If res = DialogResult.OK Then
+            library = defaultsForm.localLibrary
+        End If
+    End Sub
+
+    Private Sub SaveDefaultsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SaveDefaultsToolStripMenuItem.Click
+        Using writer = New StreamWriter(settingsFile)
+            Dim ser As XmlSerializer = New XmlSerializer(GetType(Library))
+            ser.Serialize(writer, library)
+        End Using
+    End Sub
+
+    Private Sub loadLibrary()
+        Using fs As New FileStream(settingsFile, FileMode.Open)
+            Dim ser As New XmlSerializer(GetType(Library))
+            library = CType(ser.Deserialize(fs), Library)
+        End Using
     End Sub
 
 #End Region

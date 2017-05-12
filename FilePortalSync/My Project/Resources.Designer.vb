@@ -61,29 +61,11 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Tafidm01.
-        '''</summary>
-        Friend ReadOnly Property LibraryPassword() As String
-            Get
-                Return ResourceManager.GetString("LibraryPassword", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
         '''  Looks up a localized string similar to https://ashbyschool.sharepoint.com/IT/.
         '''</summary>
         Friend ReadOnly Property LibraryURL() As String
             Get
                 Return ResourceManager.GetString("LibraryURL", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Looks up a localized string similar to p-page@ashbyschool.org.uk.
-        '''</summary>
-        Friend ReadOnly Property LibraryUsername() As String
-            Get
-                Return ResourceManager.GetString("LibraryUsername", resourceCulture)
             End Get
         End Property
         
@@ -117,11 +99,29 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to ASfileportal.ini.
+        '''</summary>
+        Friend ReadOnly Property settingsFile() As String
+            Get
+                Return ResourceManager.GetString("settingsFile", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to Test Share.
         '''</summary>
         Friend ReadOnly Property ShareName() As String
             Get
                 Return ResourceManager.GetString("ShareName", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to v0.5.
+        '''</summary>
+        Friend ReadOnly Property Version() As String
+            Get
+                Return ResourceManager.GetString("Version", resourceCulture)
             End Get
         End Property
     End Module

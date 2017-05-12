@@ -31,10 +31,18 @@ Partial Class Form1
         Me.TableAdapterManager = New FilePortalSync.fileportalDataSet1TableAdapters.TableAdapterManager()
         Me.AssignmentTableAdapter = New FilePortalSync.fileportalDataSet1TableAdapters.assignmentTableAdapter()
         Me.OutputData = New System.Windows.Forms.DataGridView()
+        Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
+        Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SaveDefaultsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.EditToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.EditDefaultsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.StartToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.AssignmentBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.FileportalDataSet1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.FiledataBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.OutputData, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'NotifyIcon1
@@ -79,14 +87,61 @@ Partial Class Form1
         Me.OutputData.AllowUserToDeleteRows = False
         Me.OutputData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.OutputData.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.OutputData.Location = New System.Drawing.Point(0, 0)
+        Me.OutputData.Location = New System.Drawing.Point(0, 24)
         Me.OutputData.Name = "OutputData"
         Me.OutputData.ReadOnly = True
         Me.OutputData.RowHeadersWidth = 60
         Me.OutputData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
         Me.OutputData.ShowEditingIcon = False
-        Me.OutputData.Size = New System.Drawing.Size(930, 513)
+        Me.OutputData.Size = New System.Drawing.Size(930, 489)
         Me.OutputData.TabIndex = 0
+        '
+        'MenuStrip1
+        '
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem1, Me.FileToolStripMenuItem, Me.EditToolStripMenuItem, Me.StartToolStripMenuItem})
+        Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
+        Me.MenuStrip1.Name = "MenuStrip1"
+        Me.MenuStrip1.Size = New System.Drawing.Size(930, 24)
+        Me.MenuStrip1.TabIndex = 1
+        Me.MenuStrip1.Text = "MenuStrip1"
+        '
+        'ToolStripMenuItem1
+        '
+        Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(12, 20)
+        '
+        'FileToolStripMenuItem
+        '
+        Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SaveDefaultsToolStripMenuItem})
+        Me.FileToolStripMenuItem.Name = "FileToolStripMenuItem"
+        Me.FileToolStripMenuItem.Size = New System.Drawing.Size(37, 20)
+        Me.FileToolStripMenuItem.Text = "File"
+        '
+        'SaveDefaultsToolStripMenuItem
+        '
+        Me.SaveDefaultsToolStripMenuItem.Name = "SaveDefaultsToolStripMenuItem"
+        Me.SaveDefaultsToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.SaveDefaultsToolStripMenuItem.Text = "Save Defaults"
+        '
+        'EditToolStripMenuItem
+        '
+        Me.EditToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EditDefaultsToolStripMenuItem})
+        Me.EditToolStripMenuItem.Name = "EditToolStripMenuItem"
+        Me.EditToolStripMenuItem.Size = New System.Drawing.Size(39, 20)
+        Me.EditToolStripMenuItem.Text = "Edit"
+        '
+        'EditDefaultsToolStripMenuItem
+        '
+        Me.EditDefaultsToolStripMenuItem.Name = "EditDefaultsToolStripMenuItem"
+        Me.EditDefaultsToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.EditDefaultsToolStripMenuItem.Text = "Edit Defaults"
+        '
+        'StartToolStripMenuItem
+        '
+        Me.StartToolStripMenuItem.BackColor = System.Drawing.Color.LawnGreen
+        Me.StartToolStripMenuItem.Name = "StartToolStripMenuItem"
+        Me.StartToolStripMenuItem.Size = New System.Drawing.Size(43, 20)
+        Me.StartToolStripMenuItem.Text = "Start"
         '
         'Form1
         '
@@ -94,13 +149,18 @@ Partial Class Form1
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(930, 513)
         Me.Controls.Add(Me.OutputData)
+        Me.Controls.Add(Me.MenuStrip1)
+        Me.MainMenuStrip = Me.MenuStrip1
         Me.Name = "Form1"
         Me.Text = "File Portal Sync"
         CType(Me.AssignmentBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.FileportalDataSet1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.FiledataBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.OutputData, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.MenuStrip1.ResumeLayout(False)
+        Me.MenuStrip1.PerformLayout()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
 
@@ -112,4 +172,11 @@ Partial Class Form1
     Friend WithEvents AssignmentTableAdapter As fileportalDataSet1TableAdapters.assignmentTableAdapter
     Friend WithEvents AssignmentBindingSource As BindingSource
     Friend WithEvents OutputData As DataGridView
+    Friend WithEvents MenuStrip1 As MenuStrip
+    Friend WithEvents ToolStripMenuItem1 As ToolStripMenuItem
+    Friend WithEvents FileToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents SaveDefaultsToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents EditToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents EditDefaultsToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents StartToolStripMenuItem As ToolStripMenuItem
 End Class

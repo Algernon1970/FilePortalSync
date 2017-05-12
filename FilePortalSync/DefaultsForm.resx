@@ -117,26 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="LibraryURL" xml:space="preserve">
-    <value>https://ashbyschool.sharepoint.com/IT/</value>
-  </data>
-  <data name="LocalShare" xml:space="preserve">
-    <value>\\192.168.5.58\public\</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="portalBlue" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\portalBlue.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="portalRed" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\portalRed.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="settingsFile" xml:space="preserve">
-    <value>ASfileportal.ini</value>
-  </data>
-  <data name="ShareName" xml:space="preserve">
-    <value>Test Share</value>
-  </data>
-  <data name="Version" xml:space="preserve">
-    <value>v0.5</value>
-  </data>
 </root>
