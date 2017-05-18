@@ -10,6 +10,8 @@ Public Class Form1
     Dim displayrow As DataRow
     Dim library As New Library()
     Dim settingsFile As String = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) & "\Ashby School\" & My.Resources.settingsFile
+    Dim Username As String = "Anonymous"
+    Dim Password As SecureString
 
 #Region "Setup"
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -25,6 +27,11 @@ Public Class Form1
         If File.Exists(settingsFile) Then
             loadLibrary()
         End If
+
+        Dim req As New PasswordForm()
+        Dim res As DialogResult = req.ShowDialog
+        Username = req.UsernameBox.Text
+        Password = AshbyTools.convertToSecureString(req.PasswordBox.Text)
 
         displayTable.Columns.Add("TimeStamp")
         displayTable.Columns.Add("Username")
@@ -75,7 +82,7 @@ Public Class Form1
             newDetailRow("Operation") = "Delete From Sharepoint"
 
 
-            Dim res As String = AshbyTools.FileOperations.deleteFromSP(copyFN, library.URL, library.Share, library.Username, library.Password)
+            Dim res As String = AshbyTools.FileOperations.deleteFromSP(copyFN, library.URL, library.Share, Username, Password)
             newDetailRow("Result") = res
             displayTable.Rows.Add(newDetailRow)
             If res.ToLower.Equals("ok") Then
@@ -106,7 +113,7 @@ Public Class Form1
             newDetailRow("Destination File") = copyFN
 
             'upload to SP
-            Dim res As String = AshbyTools.FileOperations.copyToSP(copyFN, library.URL, library.Share, library.Username, library.Password)
+            Dim res As String = AshbyTools.FileOperations.copyToSP(copyFN, library.URL, library.Share, Username, Password)
             If res.ToLower.Equals("ok") Then
                 FiledataTableAdapter.SetUploaded(True, assID)
                 File.Delete(copyFN)
