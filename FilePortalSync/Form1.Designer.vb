@@ -38,6 +38,7 @@ Partial Class Form1
         Me.EditToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.EditDefaultsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StartToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.EnterPasswordToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.AssignmentBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.FileportalDataSet1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.FiledataBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -120,12 +121,12 @@ Partial Class Form1
         'SaveDefaultsToolStripMenuItem
         '
         Me.SaveDefaultsToolStripMenuItem.Name = "SaveDefaultsToolStripMenuItem"
-        Me.SaveDefaultsToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.SaveDefaultsToolStripMenuItem.Size = New System.Drawing.Size(144, 22)
         Me.SaveDefaultsToolStripMenuItem.Text = "Save Defaults"
         '
         'EditToolStripMenuItem
         '
-        Me.EditToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EditDefaultsToolStripMenuItem})
+        Me.EditToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EditDefaultsToolStripMenuItem, Me.EnterPasswordToolStripMenuItem})
         Me.EditToolStripMenuItem.Name = "EditToolStripMenuItem"
         Me.EditToolStripMenuItem.Size = New System.Drawing.Size(39, 20)
         Me.EditToolStripMenuItem.Text = "Edit"
@@ -133,7 +134,7 @@ Partial Class Form1
         'EditDefaultsToolStripMenuItem
         '
         Me.EditDefaultsToolStripMenuItem.Name = "EditDefaultsToolStripMenuItem"
-        Me.EditDefaultsToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.EditDefaultsToolStripMenuItem.Size = New System.Drawing.Size(154, 22)
         Me.EditDefaultsToolStripMenuItem.Text = "Edit Defaults"
         '
         'StartToolStripMenuItem
@@ -142,6 +143,12 @@ Partial Class Form1
         Me.StartToolStripMenuItem.Name = "StartToolStripMenuItem"
         Me.StartToolStripMenuItem.Size = New System.Drawing.Size(43, 20)
         Me.StartToolStripMenuItem.Text = "Start"
+        '
+        'EnterPasswordToolStripMenuItem
+        '
+        Me.EnterPasswordToolStripMenuItem.Name = "EnterPasswordToolStripMenuItem"
+        Me.EnterPasswordToolStripMenuItem.Size = New System.Drawing.Size(154, 22)
+        Me.EnterPasswordToolStripMenuItem.Text = "Enter Password"
         '
         'Form1
         '
@@ -179,4 +186,5 @@ Partial Class Form1
     Friend WithEvents EditToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents EditDefaultsToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents StartToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents EnterPasswordToolStripMenuItem As ToolStripMenuItem
 End Class

@@ -28,10 +28,7 @@ Public Class Form1
             loadLibrary()
         End If
 
-        Dim req As New PasswordForm()
-        Dim res As DialogResult = req.ShowDialog
-        Username = req.UsernameBox.Text
-        Password = AshbyTools.convertToSecureString(req.PasswordBox.Text)
+        GetPassword()
 
         displayTable.Columns.Add("TimeStamp")
         displayTable.Columns.Add("Username")
@@ -40,6 +37,13 @@ Public Class Form1
         displayTable.Columns.Add("Destination File")
         displayTable.Columns.Add("Operation")
         displayTable.Columns.Add("Result")
+    End Sub
+
+    Private Sub GetPassword()
+        Dim req As New PasswordForm()
+        Dim res As DialogResult = req.ShowDialog
+        Username = req.UsernameBox.Text
+        Password = AshbyTools.convertToSecureString(req.PasswordBox.Text)
     End Sub
 
     Private Sub watchdog_DoWork(ByVal sender As Object, ByVal e As DoWorkEventArgs)
@@ -56,6 +60,13 @@ Public Class Form1
 
             Threading.Thread.Sleep(5000)
         End While
+    End Sub
+
+    Private Sub watchdog_StopWork()
+        StartToolStripMenuItem.Text = "Start"
+        StartToolStripMenuItem.BackColor = Color.LawnGreen
+        EditToolStripMenuItem.Enabled = True
+        FileToolStripMenuItem.Enabled = True
     End Sub
 #End Region
 
@@ -149,11 +160,24 @@ Public Class Form1
 #Region "Menu Handleing"
 
     Private Sub StartToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles StartToolStripMenuItem.Click
-        MainMenuStrip.Visible = False
-        OutputData.DataSource = displayTable
         Dim wd As BackgroundWorker = New BackgroundWorker
+        wd.WorkerSupportsCancellation = True
         AddHandler wd.DoWork, AddressOf watchdog_DoWork
-        wd.RunWorkerAsync()
+        AddHandler wd.RunWorkerCompleted, AddressOf watchdog_StopWork
+        If StartToolStripMenuItem.Text.Equals("Start") Then
+            EditToolStripMenuItem.Enabled = False
+            FileToolStripMenuItem.Enabled = False
+            StartToolStripMenuItem.Text = "Stop"
+            StartToolStripMenuItem.BackColor = Color.Red
+            OutputData.DataSource = displayTable
+            cancelled = False
+            wd.RunWorkerAsync()
+        Else
+            StartToolStripMenuItem.Text = "Stopping"
+            StartToolStripMenuItem.BackColor = Color.Orange
+            cancelled = True
+            wd.CancelAsync()
+        End If
     End Sub
 
     Private Sub EditDefaultsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EditDefaultsToolStripMenuItem.Click
@@ -176,6 +200,10 @@ Public Class Form1
             Dim ser As New XmlSerializer(GetType(Library))
             library = CType(ser.Deserialize(fs), Library)
         End Using
+    End Sub
+
+    Private Sub EnterPasswordToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EnterPasswordToolStripMenuItem.Click
+        GetPassword()
     End Sub
 
 #End Region
