@@ -48,10 +48,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AshbyTools">
-      <HintPath>..\..\..\..\Source\Repos\AshbyLibrary\AshbyTools\AshbyTools\bin\Debug\AshbyTools.dll</HintPath>
+      <HintPath>N:\GIT\AS-Library-Tools\AshbyTools\AshbyTools\bin\Debug\AshbyTools.dll</HintPath>
     </Reference>
     <Reference Include="AshbyToolsControls">
-      <HintPath>..\..\..\..\Source\Repos\AshbyLibrary\AshbyToolsControls\AshbyToolsControls\bin\Debug\AshbyToolsControls.dll</HintPath>
+      <HintPath>N:\GIT\AS-Library-Tools\AshbyToolsControls\AshbyToolsControls\bin\Debug\AshbyToolsControls.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
