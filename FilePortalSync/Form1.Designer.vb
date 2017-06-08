@@ -24,12 +24,6 @@ Partial Class Form1
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.NotifyIcon1 = New System.Windows.Forms.NotifyIcon(Me.components)
-        Me.AssignmentBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.FileportalDataSet1 = New FilePortalSync.fileportalDataSet1()
-        Me.FiledataBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.FiledataTableAdapter = New FilePortalSync.fileportalDataSet1TableAdapters.filedataTableAdapter()
-        Me.TableAdapterManager = New FilePortalSync.fileportalDataSet1TableAdapters.TableAdapterManager()
-        Me.AssignmentTableAdapter = New FilePortalSync.fileportalDataSet1TableAdapters.assignmentTableAdapter()
         Me.OutputData = New System.Windows.Forms.DataGridView()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
@@ -37,13 +31,28 @@ Partial Class Form1
         Me.SaveDefaultsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.EditToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.EditDefaultsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.StartToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.EnterPasswordToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.StartToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AssignmentBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.FileportalDataSet1 = New FilePortalSync.fileportalDataSet1()
+        Me.FiledataBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.FiledataTableAdapter = New FilePortalSync.fileportalDataSet1TableAdapters.filedataTableAdapter()
+        Me.TableAdapterManager = New FilePortalSync.fileportalDataSet1TableAdapters.TableAdapterManager()
+        Me.AssignmentTableAdapter = New FilePortalSync.fileportalDataSet1TableAdapters.assignmentTableAdapter()
+        Me.IdAssignmentDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TeacherDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ClassDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TitleDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SetDateDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DeadlineDateDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DelDataGridViewCheckBoxColumn = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.NotesDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.LockedDataGridViewCheckBoxColumn = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        CType(Me.OutputData, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.MenuStrip1.SuspendLayout()
         CType(Me.AssignmentBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.FileportalDataSet1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.FiledataBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.OutputData, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'NotifyIcon1
@@ -51,42 +60,14 @@ Partial Class Form1
         Me.NotifyIcon1.Text = "File Portal Sync"
         Me.NotifyIcon1.Visible = True
         '
-        'AssignmentBindingSource
-        '
-        Me.AssignmentBindingSource.DataMember = "assignment"
-        Me.AssignmentBindingSource.DataSource = Me.FileportalDataSet1
-        '
-        'FileportalDataSet1
-        '
-        Me.FileportalDataSet1.DataSetName = "fileportalDataSet1"
-        Me.FileportalDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
-        'FiledataBindingSource
-        '
-        Me.FiledataBindingSource.DataMember = "filedata"
-        Me.FiledataBindingSource.DataSource = Me.FileportalDataSet1
-        '
-        'FiledataTableAdapter
-        '
-        Me.FiledataTableAdapter.ClearBeforeFill = True
-        '
-        'TableAdapterManager
-        '
-        Me.TableAdapterManager.assignmentTableAdapter = Me.AssignmentTableAdapter
-        Me.TableAdapterManager.BackupDataSetBeforeUpdate = False
-        Me.TableAdapterManager.filecheckTableAdapter = Nothing
-        Me.TableAdapterManager.filedataTableAdapter = Me.FiledataTableAdapter
-        Me.TableAdapterManager.UpdateOrder = FilePortalSync.fileportalDataSet1TableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete
-        '
-        'AssignmentTableAdapter
-        '
-        Me.AssignmentTableAdapter.ClearBeforeFill = True
-        '
         'OutputData
         '
         Me.OutputData.AllowUserToAddRows = False
         Me.OutputData.AllowUserToDeleteRows = False
+        Me.OutputData.AutoGenerateColumns = False
         Me.OutputData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.OutputData.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IdAssignmentDataGridViewTextBoxColumn, Me.TeacherDataGridViewTextBoxColumn, Me.ClassDataGridViewTextBoxColumn, Me.TitleDataGridViewTextBoxColumn, Me.SetDateDataGridViewTextBoxColumn, Me.DeadlineDateDataGridViewTextBoxColumn, Me.DelDataGridViewCheckBoxColumn, Me.NotesDataGridViewTextBoxColumn, Me.LockedDataGridViewCheckBoxColumn})
+        Me.OutputData.DataSource = Me.AssignmentBindingSource
         Me.OutputData.Dock = System.Windows.Forms.DockStyle.Fill
         Me.OutputData.Location = New System.Drawing.Point(0, 24)
         Me.OutputData.Name = "OutputData"
@@ -137,6 +118,12 @@ Partial Class Form1
         Me.EditDefaultsToolStripMenuItem.Size = New System.Drawing.Size(154, 22)
         Me.EditDefaultsToolStripMenuItem.Text = "Edit Defaults"
         '
+        'EnterPasswordToolStripMenuItem
+        '
+        Me.EnterPasswordToolStripMenuItem.Name = "EnterPasswordToolStripMenuItem"
+        Me.EnterPasswordToolStripMenuItem.Size = New System.Drawing.Size(154, 22)
+        Me.EnterPasswordToolStripMenuItem.Text = "Enter Password"
+        '
         'StartToolStripMenuItem
         '
         Me.StartToolStripMenuItem.BackColor = System.Drawing.Color.LawnGreen
@@ -144,11 +131,98 @@ Partial Class Form1
         Me.StartToolStripMenuItem.Size = New System.Drawing.Size(43, 20)
         Me.StartToolStripMenuItem.Text = "Start"
         '
-        'EnterPasswordToolStripMenuItem
+        'AssignmentBindingSource
         '
-        Me.EnterPasswordToolStripMenuItem.Name = "EnterPasswordToolStripMenuItem"
-        Me.EnterPasswordToolStripMenuItem.Size = New System.Drawing.Size(154, 22)
-        Me.EnterPasswordToolStripMenuItem.Text = "Enter Password"
+        Me.AssignmentBindingSource.DataMember = "assignment"
+        Me.AssignmentBindingSource.DataSource = Me.FileportalDataSet1
+        '
+        'FileportalDataSet1
+        '
+        Me.FileportalDataSet1.DataSetName = "fileportalDataSet1"
+        Me.FileportalDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'FiledataBindingSource
+        '
+        Me.FiledataBindingSource.DataMember = "filedata"
+        Me.FiledataBindingSource.DataSource = Me.FileportalDataSet1
+        '
+        'FiledataTableAdapter
+        '
+        Me.FiledataTableAdapter.ClearBeforeFill = True
+        '
+        'TableAdapterManager
+        '
+        Me.TableAdapterManager.assignmentTableAdapter = Nothing
+        Me.TableAdapterManager.BackupDataSetBeforeUpdate = False
+        Me.TableAdapterManager.filedataTableAdapter = Me.FiledataTableAdapter
+        Me.TableAdapterManager.UpdateOrder = FilePortalSync.fileportalDataSet1TableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete
+        '
+        'AssignmentTableAdapter
+        '
+        Me.AssignmentTableAdapter.ClearBeforeFill = True
+        '
+        'IdAssignmentDataGridViewTextBoxColumn
+        '
+        Me.IdAssignmentDataGridViewTextBoxColumn.DataPropertyName = "idAssignment"
+        Me.IdAssignmentDataGridViewTextBoxColumn.HeaderText = "idAssignment"
+        Me.IdAssignmentDataGridViewTextBoxColumn.Name = "IdAssignmentDataGridViewTextBoxColumn"
+        Me.IdAssignmentDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'TeacherDataGridViewTextBoxColumn
+        '
+        Me.TeacherDataGridViewTextBoxColumn.DataPropertyName = "teacher"
+        Me.TeacherDataGridViewTextBoxColumn.HeaderText = "teacher"
+        Me.TeacherDataGridViewTextBoxColumn.Name = "TeacherDataGridViewTextBoxColumn"
+        Me.TeacherDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'ClassDataGridViewTextBoxColumn
+        '
+        Me.ClassDataGridViewTextBoxColumn.DataPropertyName = "class"
+        Me.ClassDataGridViewTextBoxColumn.HeaderText = "class"
+        Me.ClassDataGridViewTextBoxColumn.Name = "ClassDataGridViewTextBoxColumn"
+        Me.ClassDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'TitleDataGridViewTextBoxColumn
+        '
+        Me.TitleDataGridViewTextBoxColumn.DataPropertyName = "title"
+        Me.TitleDataGridViewTextBoxColumn.HeaderText = "title"
+        Me.TitleDataGridViewTextBoxColumn.Name = "TitleDataGridViewTextBoxColumn"
+        Me.TitleDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'SetDateDataGridViewTextBoxColumn
+        '
+        Me.SetDateDataGridViewTextBoxColumn.DataPropertyName = "setDate"
+        Me.SetDateDataGridViewTextBoxColumn.HeaderText = "setDate"
+        Me.SetDateDataGridViewTextBoxColumn.Name = "SetDateDataGridViewTextBoxColumn"
+        Me.SetDateDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'DeadlineDateDataGridViewTextBoxColumn
+        '
+        Me.DeadlineDateDataGridViewTextBoxColumn.DataPropertyName = "deadlineDate"
+        Me.DeadlineDateDataGridViewTextBoxColumn.HeaderText = "deadlineDate"
+        Me.DeadlineDateDataGridViewTextBoxColumn.Name = "DeadlineDateDataGridViewTextBoxColumn"
+        Me.DeadlineDateDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'DelDataGridViewCheckBoxColumn
+        '
+        Me.DelDataGridViewCheckBoxColumn.DataPropertyName = "del"
+        Me.DelDataGridViewCheckBoxColumn.HeaderText = "del"
+        Me.DelDataGridViewCheckBoxColumn.Name = "DelDataGridViewCheckBoxColumn"
+        Me.DelDataGridViewCheckBoxColumn.ReadOnly = True
+        '
+        'NotesDataGridViewTextBoxColumn
+        '
+        Me.NotesDataGridViewTextBoxColumn.DataPropertyName = "notes"
+        Me.NotesDataGridViewTextBoxColumn.HeaderText = "notes"
+        Me.NotesDataGridViewTextBoxColumn.Name = "NotesDataGridViewTextBoxColumn"
+        Me.NotesDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'LockedDataGridViewCheckBoxColumn
+        '
+        Me.LockedDataGridViewCheckBoxColumn.DataPropertyName = "locked"
+        Me.LockedDataGridViewCheckBoxColumn.HeaderText = "locked"
+        Me.LockedDataGridViewCheckBoxColumn.Name = "LockedDataGridViewCheckBoxColumn"
+        Me.LockedDataGridViewCheckBoxColumn.ReadOnly = True
         '
         'Form1
         '
@@ -160,12 +234,12 @@ Partial Class Form1
         Me.MainMenuStrip = Me.MenuStrip1
         Me.Name = "Form1"
         Me.Text = "File Portal Sync"
-        CType(Me.AssignmentBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.FileportalDataSet1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.FiledataBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.OutputData, System.ComponentModel.ISupportInitialize).EndInit()
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
+        CType(Me.AssignmentBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.FileportalDataSet1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.FiledataBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -176,7 +250,6 @@ Partial Class Form1
     Friend WithEvents FiledataBindingSource As BindingSource
     Friend WithEvents FiledataTableAdapter As fileportalDataSet1TableAdapters.filedataTableAdapter
     Friend WithEvents TableAdapterManager As fileportalDataSet1TableAdapters.TableAdapterManager
-    Friend WithEvents AssignmentTableAdapter As fileportalDataSet1TableAdapters.assignmentTableAdapter
     Friend WithEvents AssignmentBindingSource As BindingSource
     Friend WithEvents OutputData As DataGridView
     Friend WithEvents MenuStrip1 As MenuStrip
@@ -187,4 +260,14 @@ Partial Class Form1
     Friend WithEvents EditDefaultsToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents StartToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents EnterPasswordToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents IdAssignmentDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents TeacherDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents ClassDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents TitleDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents SetDateDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents DeadlineDateDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents DelDataGridViewCheckBoxColumn As DataGridViewCheckBoxColumn
+    Friend WithEvents NotesDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents LockedDataGridViewCheckBoxColumn As DataGridViewCheckBoxColumn
+    Friend WithEvents AssignmentTableAdapter As fileportalDataSet1TableAdapters.assignmentTableAdapter
 End Class

@@ -97,7 +97,7 @@ Public Class Form1
             newDetailRow("Result") = res
             displayTable.Rows.Add(newDetailRow)
             If res.ToLower.Equals("ok") Then
-                FiledataTableAdapter.DeletebyRowID(rowID)
+                'FiledataTableAdapter.DeletebyRowID(rowID)
             Else
                 NotifyIcon1.Icon = My.Resources.portalRed
             End If

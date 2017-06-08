@@ -25,15 +25,11 @@ Option Explicit On
 Partial Public Class fileportalDataSet1
     Inherits Global.System.Data.DataSet
     
-    Private tableassignment As assignmentDataTable
-    
     Private tablefiledata As filedataDataTable
     
-    Private tablefilecheck As filecheckDataTable
+    Private tableassignment As assignmentDataTable
     
     Private relationFK_filedata_Assignment As Global.System.Data.DataRelation
-    
-    Private relationFK_filecheck_filedata1 As Global.System.Data.DataRelation
     
     Private _schemaSerializationMode As Global.System.Data.SchemaSerializationMode = Global.System.Data.SchemaSerializationMode.IncludeSchema
     
@@ -64,14 +60,11 @@ Partial Public Class fileportalDataSet1
         If (Me.DetermineSchemaSerializationMode(info, context) = Global.System.Data.SchemaSerializationMode.IncludeSchema) Then
             Dim ds As Global.System.Data.DataSet = New Global.System.Data.DataSet()
             ds.ReadXmlSchema(New Global.System.Xml.XmlTextReader(New Global.System.IO.StringReader(strSchema)))
-            If (Not (ds.Tables("assignment")) Is Nothing) Then
-                MyBase.Tables.Add(New assignmentDataTable(ds.Tables("assignment")))
-            End If
             If (Not (ds.Tables("filedata")) Is Nothing) Then
                 MyBase.Tables.Add(New filedataDataTable(ds.Tables("filedata")))
             End If
-            If (Not (ds.Tables("filecheck")) Is Nothing) Then
-                MyBase.Tables.Add(New filecheckDataTable(ds.Tables("filecheck")))
+            If (Not (ds.Tables("assignment")) Is Nothing) Then
+                MyBase.Tables.Add(New assignmentDataTable(ds.Tables("assignment")))
             End If
             Me.DataSetName = ds.DataSetName
             Me.Prefix = ds.Prefix
@@ -94,16 +87,6 @@ Partial Public Class fileportalDataSet1
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
      Global.System.ComponentModel.Browsable(false),  _
      Global.System.ComponentModel.DesignerSerializationVisibility(Global.System.ComponentModel.DesignerSerializationVisibility.Content)>  _
-    Public ReadOnly Property assignment() As assignmentDataTable
-        Get
-            Return Me.tableassignment
-        End Get
-    End Property
-    
-    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-     Global.System.ComponentModel.Browsable(false),  _
-     Global.System.ComponentModel.DesignerSerializationVisibility(Global.System.ComponentModel.DesignerSerializationVisibility.Content)>  _
     Public ReadOnly Property filedata() As filedataDataTable
         Get
             Return Me.tablefiledata
@@ -114,9 +97,9 @@ Partial Public Class fileportalDataSet1
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
      Global.System.ComponentModel.Browsable(false),  _
      Global.System.ComponentModel.DesignerSerializationVisibility(Global.System.ComponentModel.DesignerSerializationVisibility.Content)>  _
-    Public ReadOnly Property filecheck() As filecheckDataTable
+    Public ReadOnly Property assignment() As assignmentDataTable
         Get
-            Return Me.tablefilecheck
+            Return Me.tableassignment
         End Get
     End Property
     
@@ -187,14 +170,11 @@ Partial Public Class fileportalDataSet1
             Me.Reset
             Dim ds As Global.System.Data.DataSet = New Global.System.Data.DataSet()
             ds.ReadXml(reader)
-            If (Not (ds.Tables("assignment")) Is Nothing) Then
-                MyBase.Tables.Add(New assignmentDataTable(ds.Tables("assignment")))
-            End If
             If (Not (ds.Tables("filedata")) Is Nothing) Then
                 MyBase.Tables.Add(New filedataDataTable(ds.Tables("filedata")))
             End If
-            If (Not (ds.Tables("filecheck")) Is Nothing) Then
-                MyBase.Tables.Add(New filecheckDataTable(ds.Tables("filecheck")))
+            If (Not (ds.Tables("assignment")) Is Nothing) Then
+                MyBase.Tables.Add(New assignmentDataTable(ds.Tables("assignment")))
             End If
             Me.DataSetName = ds.DataSetName
             Me.Prefix = ds.Prefix
@@ -228,26 +208,19 @@ Partial Public Class fileportalDataSet1
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
     Friend Overloads Sub InitVars(ByVal initTable As Boolean)
-        Me.tableassignment = CType(MyBase.Tables("assignment"),assignmentDataTable)
-        If (initTable = true) Then
-            If (Not (Me.tableassignment) Is Nothing) Then
-                Me.tableassignment.InitVars
-            End If
-        End If
         Me.tablefiledata = CType(MyBase.Tables("filedata"),filedataDataTable)
         If (initTable = true) Then
             If (Not (Me.tablefiledata) Is Nothing) Then
                 Me.tablefiledata.InitVars
             End If
         End If
-        Me.tablefilecheck = CType(MyBase.Tables("filecheck"),filecheckDataTable)
+        Me.tableassignment = CType(MyBase.Tables("assignment"),assignmentDataTable)
         If (initTable = true) Then
-            If (Not (Me.tablefilecheck) Is Nothing) Then
-                Me.tablefilecheck.InitVars
+            If (Not (Me.tableassignment) Is Nothing) Then
+                Me.tableassignment.InitVars
             End If
         End If
         Me.relationFK_filedata_Assignment = Me.Relations("FK_filedata_Assignment")
-        Me.relationFK_filecheck_filedata1 = Me.Relations("FK_filecheck_filedata1")
     End Sub
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -258,23 +231,13 @@ Partial Public Class fileportalDataSet1
         Me.Namespace = "http://tempuri.org/fileportalDataSet1.xsd"
         Me.EnforceConstraints = true
         Me.SchemaSerializationMode = Global.System.Data.SchemaSerializationMode.IncludeSchema
-        Me.tableassignment = New assignmentDataTable()
-        MyBase.Tables.Add(Me.tableassignment)
         Me.tablefiledata = New filedataDataTable()
         MyBase.Tables.Add(Me.tablefiledata)
-        Me.tablefilecheck = New filecheckDataTable()
-        MyBase.Tables.Add(Me.tablefilecheck)
+        Me.tableassignment = New assignmentDataTable()
+        MyBase.Tables.Add(Me.tableassignment)
         Me.relationFK_filedata_Assignment = New Global.System.Data.DataRelation("FK_filedata_Assignment", New Global.System.Data.DataColumn() {Me.tableassignment.idAssignmentColumn}, New Global.System.Data.DataColumn() {Me.tablefiledata.idAssignmentColumn}, false)
         Me.Relations.Add(Me.relationFK_filedata_Assignment)
-        Me.relationFK_filecheck_filedata1 = New Global.System.Data.DataRelation("FK_filecheck_filedata1", New Global.System.Data.DataColumn() {Me.tablefiledata.idFiledataColumn}, New Global.System.Data.DataColumn() {Me.tablefilecheck.idFiledataColumn}, false)
-        Me.Relations.Add(Me.relationFK_filecheck_filedata1)
     End Sub
-    
-    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-    Private Function ShouldSerializeassignment() As Boolean
-        Return false
-    End Function
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
@@ -284,7 +247,7 @@ Partial Public Class fileportalDataSet1
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-    Private Function ShouldSerializefilecheck() As Boolean
+    Private Function ShouldSerializeassignment() As Boolean
         Return false
     End Function
     
@@ -347,382 +310,10 @@ Partial Public Class fileportalDataSet1
     End Function
     
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-    Public Delegate Sub assignmentRowChangeEventHandler(ByVal sender As Object, ByVal e As assignmentRowChangeEvent)
-    
-    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
     Public Delegate Sub filedataRowChangeEventHandler(ByVal sender As Object, ByVal e As filedataRowChangeEvent)
     
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-    Public Delegate Sub filecheckRowChangeEventHandler(ByVal sender As Object, ByVal e As filecheckRowChangeEvent)
-    
-    '''<summary>
-    '''Represents the strongly named DataTable class.
-    '''</summary>
-    <Global.System.Serializable(),  _
-     Global.System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")>  _
-    Partial Public Class assignmentDataTable
-        Inherits Global.System.Data.TypedTableBase(Of assignmentRow)
-        
-        Private columnidAssignment As Global.System.Data.DataColumn
-        
-        Private columnteacher As Global.System.Data.DataColumn
-        
-        Private columnclass As Global.System.Data.DataColumn
-        
-        Private columntitle As Global.System.Data.DataColumn
-        
-        Private columnsetDate As Global.System.Data.DataColumn
-        
-        Private columndeadlineDate As Global.System.Data.DataColumn
-        
-        Private columndel As Global.System.Data.DataColumn
-        
-        Private columnnotes As Global.System.Data.DataColumn
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub New()
-            MyBase.New
-            Me.TableName = "assignment"
-            Me.BeginInit
-            Me.InitClass
-            Me.EndInit
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Friend Sub New(ByVal table As Global.System.Data.DataTable)
-            MyBase.New
-            Me.TableName = table.TableName
-            If (table.CaseSensitive <> table.DataSet.CaseSensitive) Then
-                Me.CaseSensitive = table.CaseSensitive
-            End If
-            If (table.Locale.ToString <> table.DataSet.Locale.ToString) Then
-                Me.Locale = table.Locale
-            End If
-            If (table.Namespace <> table.DataSet.Namespace) Then
-                Me.Namespace = table.Namespace
-            End If
-            Me.Prefix = table.Prefix
-            Me.MinimumCapacity = table.MinimumCapacity
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Protected Sub New(ByVal info As Global.System.Runtime.Serialization.SerializationInfo, ByVal context As Global.System.Runtime.Serialization.StreamingContext)
-            MyBase.New(info, context)
-            Me.InitVars
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property idAssignmentColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnidAssignment
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property teacherColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnteacher
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property classColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnclass
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property titleColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columntitle
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property setDateColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnsetDate
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property deadlineDateColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columndeadlineDate
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property delColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columndel
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property notesColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnnotes
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Browsable(false)>  _
-        Public ReadOnly Property Count() As Integer
-            Get
-                Return Me.Rows.Count
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Default ReadOnly Property Item(ByVal index As Integer) As assignmentRow
-            Get
-                Return CType(Me.Rows(index),assignmentRow)
-            End Get
-        End Property
-        
-        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Event assignmentRowChanging As assignmentRowChangeEventHandler
-        
-        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Event assignmentRowChanged As assignmentRowChangeEventHandler
-        
-        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Event assignmentRowDeleting As assignmentRowChangeEventHandler
-        
-        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Event assignmentRowDeleted As assignmentRowChangeEventHandler
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overloads Sub AddassignmentRow(ByVal row As assignmentRow)
-            Me.Rows.Add(row)
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overloads Function AddassignmentRow(ByVal teacher As String, ByVal _class As String, ByVal title As String, ByVal setDate As Date, ByVal deadlineDate As Date, ByVal del As Boolean, ByVal notes As String) As assignmentRow
-            Dim rowassignmentRow As assignmentRow = CType(Me.NewRow,assignmentRow)
-            Dim columnValuesArray() As Object = New Object() {Nothing, teacher, _class, title, setDate, deadlineDate, del, notes}
-            rowassignmentRow.ItemArray = columnValuesArray
-            Me.Rows.Add(rowassignmentRow)
-            Return rowassignmentRow
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function FindByidAssignment(ByVal idAssignment As Integer) As assignmentRow
-            Return CType(Me.Rows.Find(New Object() {idAssignment}),assignmentRow)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overrides Function Clone() As Global.System.Data.DataTable
-            Dim cln As assignmentDataTable = CType(MyBase.Clone,assignmentDataTable)
-            cln.InitVars
-            Return cln
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Protected Overrides Function CreateInstance() As Global.System.Data.DataTable
-            Return New assignmentDataTable()
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Friend Sub InitVars()
-            Me.columnidAssignment = MyBase.Columns("idAssignment")
-            Me.columnteacher = MyBase.Columns("teacher")
-            Me.columnclass = MyBase.Columns("class")
-            Me.columntitle = MyBase.Columns("title")
-            Me.columnsetDate = MyBase.Columns("setDate")
-            Me.columndeadlineDate = MyBase.Columns("deadlineDate")
-            Me.columndel = MyBase.Columns("del")
-            Me.columnnotes = MyBase.Columns("notes")
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Private Sub InitClass()
-            Me.columnidAssignment = New Global.System.Data.DataColumn("idAssignment", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnidAssignment)
-            Me.columnteacher = New Global.System.Data.DataColumn("teacher", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnteacher)
-            Me.columnclass = New Global.System.Data.DataColumn("class", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            Me.columnclass.ExtendedProperties.Add("Generator_ColumnPropNameInTable", "classColumn")
-            Me.columnclass.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "columnclass")
-            Me.columnclass.ExtendedProperties.Add("Generator_UserColumnName", "class")
-            MyBase.Columns.Add(Me.columnclass)
-            Me.columntitle = New Global.System.Data.DataColumn("title", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columntitle)
-            Me.columnsetDate = New Global.System.Data.DataColumn("setDate", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnsetDate)
-            Me.columndeadlineDate = New Global.System.Data.DataColumn("deadlineDate", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columndeadlineDate)
-            Me.columndel = New Global.System.Data.DataColumn("del", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columndel)
-            Me.columnnotes = New Global.System.Data.DataColumn("notes", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnnotes)
-            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnidAssignment}, true))
-            Me.columnidAssignment.AutoIncrement = true
-            Me.columnidAssignment.AutoIncrementSeed = -1
-            Me.columnidAssignment.AutoIncrementStep = -1
-            Me.columnidAssignment.AllowDBNull = false
-            Me.columnidAssignment.ReadOnly = true
-            Me.columnidAssignment.Unique = true
-            Me.columnteacher.AllowDBNull = false
-            Me.columnteacher.MaxLength = 50
-            Me.columnclass.AllowDBNull = false
-            Me.columnclass.MaxLength = 10
-            Me.columntitle.AllowDBNull = false
-            Me.columntitle.MaxLength = 50
-            Me.columnsetDate.AllowDBNull = false
-            Me.columndeadlineDate.AllowDBNull = false
-            Me.columndel.AllowDBNull = false
-            Me.columnnotes.MaxLength = 1000
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function NewassignmentRow() As assignmentRow
-            Return CType(Me.NewRow,assignmentRow)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Protected Overrides Function NewRowFromBuilder(ByVal builder As Global.System.Data.DataRowBuilder) As Global.System.Data.DataRow
-            Return New assignmentRow(builder)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Protected Overrides Function GetRowType() As Global.System.Type
-            Return GetType(assignmentRow)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Protected Overrides Sub OnRowChanged(ByVal e As Global.System.Data.DataRowChangeEventArgs)
-            MyBase.OnRowChanged(e)
-            If (Not (Me.assignmentRowChangedEvent) Is Nothing) Then
-                RaiseEvent assignmentRowChanged(Me, New assignmentRowChangeEvent(CType(e.Row,assignmentRow), e.Action))
-            End If
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Protected Overrides Sub OnRowChanging(ByVal e As Global.System.Data.DataRowChangeEventArgs)
-            MyBase.OnRowChanging(e)
-            If (Not (Me.assignmentRowChangingEvent) Is Nothing) Then
-                RaiseEvent assignmentRowChanging(Me, New assignmentRowChangeEvent(CType(e.Row,assignmentRow), e.Action))
-            End If
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Protected Overrides Sub OnRowDeleted(ByVal e As Global.System.Data.DataRowChangeEventArgs)
-            MyBase.OnRowDeleted(e)
-            If (Not (Me.assignmentRowDeletedEvent) Is Nothing) Then
-                RaiseEvent assignmentRowDeleted(Me, New assignmentRowChangeEvent(CType(e.Row,assignmentRow), e.Action))
-            End If
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Protected Overrides Sub OnRowDeleting(ByVal e As Global.System.Data.DataRowChangeEventArgs)
-            MyBase.OnRowDeleting(e)
-            If (Not (Me.assignmentRowDeletingEvent) Is Nothing) Then
-                RaiseEvent assignmentRowDeleting(Me, New assignmentRowChangeEvent(CType(e.Row,assignmentRow), e.Action))
-            End If
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub RemoveassignmentRow(ByVal row As assignmentRow)
-            Me.Rows.Remove(row)
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Shared Function GetTypedTableSchema(ByVal xs As Global.System.Xml.Schema.XmlSchemaSet) As Global.System.Xml.Schema.XmlSchemaComplexType
-            Dim type As Global.System.Xml.Schema.XmlSchemaComplexType = New Global.System.Xml.Schema.XmlSchemaComplexType()
-            Dim sequence As Global.System.Xml.Schema.XmlSchemaSequence = New Global.System.Xml.Schema.XmlSchemaSequence()
-            Dim ds As fileportalDataSet1 = New fileportalDataSet1()
-            Dim any1 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny()
-            any1.Namespace = "http://www.w3.org/2001/XMLSchema"
-            any1.MinOccurs = New Decimal(0)
-            any1.MaxOccurs = Decimal.MaxValue
-            any1.ProcessContents = Global.System.Xml.Schema.XmlSchemaContentProcessing.Lax
-            sequence.Items.Add(any1)
-            Dim any2 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny()
-            any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1"
-            any2.MinOccurs = New Decimal(1)
-            any2.ProcessContents = Global.System.Xml.Schema.XmlSchemaContentProcessing.Lax
-            sequence.Items.Add(any2)
-            Dim attribute1 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
-            attribute1.Name = "namespace"
-            attribute1.FixedValue = ds.Namespace
-            type.Attributes.Add(attribute1)
-            Dim attribute2 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
-            attribute2.Name = "tableTypeName"
-            attribute2.FixedValue = "assignmentDataTable"
-            type.Attributes.Add(attribute2)
-            type.Particle = sequence
-            Dim dsSchema As Global.System.Xml.Schema.XmlSchema = ds.GetSchemaSerializable
-            If xs.Contains(dsSchema.TargetNamespace) Then
-                Dim s1 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream()
-                Dim s2 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream()
-                Try 
-                    Dim schema As Global.System.Xml.Schema.XmlSchema = Nothing
-                    dsSchema.Write(s1)
-                    Dim schemas As Global.System.Collections.IEnumerator = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator
-                    Do While schemas.MoveNext
-                        schema = CType(schemas.Current,Global.System.Xml.Schema.XmlSchema)
-                        s2.SetLength(0)
-                        schema.Write(s2)
-                        If (s1.Length = s2.Length) Then
-                            s1.Position = 0
-                            s2.Position = 0
-                            
-                            Do While ((s1.Position <> s1.Length)  _
-                                        AndAlso (s1.ReadByte = s2.ReadByte))
-                                
-                                
-                            Loop
-                            If (s1.Position = s1.Length) Then
-                                Return type
-                            End If
-                        End If
-                        
-                    Loop
-                Finally
-                    If (Not (s1) Is Nothing) Then
-                        s1.Close
-                    End If
-                    If (Not (s2) Is Nothing) Then
-                        s2.Close
-                    End If
-                End Try
-            End If
-            xs.Add(dsSchema)
-            Return type
-        End Function
-    End Class
+    Public Delegate Sub assignmentRowChangeEventHandler(ByVal sender As Object, ByVal e As assignmentRowChangeEvent)
     
     '''<summary>
     '''Represents the strongly named DataTable class.
@@ -1143,24 +734,32 @@ Partial Public Class fileportalDataSet1
     '''</summary>
     <Global.System.Serializable(),  _
      Global.System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")>  _
-    Partial Public Class filecheckDataTable
-        Inherits Global.System.Data.TypedTableBase(Of filecheckRow)
+    Partial Public Class assignmentDataTable
+        Inherits Global.System.Data.TypedTableBase(Of assignmentRow)
         
-        Private columnidFilecheck As Global.System.Data.DataColumn
+        Private columnidAssignment As Global.System.Data.DataColumn
         
-        Private columnusername As Global.System.Data.DataColumn
+        Private columnteacher As Global.System.Data.DataColumn
         
-        Private columnidFiledata As Global.System.Data.DataColumn
+        Private columnclass As Global.System.Data.DataColumn
         
-        Private columndate As Global.System.Data.DataColumn
+        Private columntitle As Global.System.Data.DataColumn
         
-        Private columnopened As Global.System.Data.DataColumn
+        Private columnsetDate As Global.System.Data.DataColumn
+        
+        Private columndeadlineDate As Global.System.Data.DataColumn
+        
+        Private columndel As Global.System.Data.DataColumn
+        
+        Private columnnotes As Global.System.Data.DataColumn
+        
+        Private columnlocked As Global.System.Data.DataColumn
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub New()
             MyBase.New
-            Me.TableName = "filecheck"
+            Me.TableName = "assignment"
             Me.BeginInit
             Me.InitClass
             Me.EndInit
@@ -1193,41 +792,73 @@ Partial Public Class fileportalDataSet1
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property idFilecheckColumn() As Global.System.Data.DataColumn
+        Public ReadOnly Property idAssignmentColumn() As Global.System.Data.DataColumn
             Get
-                Return Me.columnidFilecheck
+                Return Me.columnidAssignment
             End Get
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property usernameColumn() As Global.System.Data.DataColumn
+        Public ReadOnly Property teacherColumn() As Global.System.Data.DataColumn
             Get
-                Return Me.columnusername
+                Return Me.columnteacher
             End Get
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property idFiledataColumn() As Global.System.Data.DataColumn
+        Public ReadOnly Property classColumn() As Global.System.Data.DataColumn
             Get
-                Return Me.columnidFiledata
+                Return Me.columnclass
             End Get
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property dateColumn() As Global.System.Data.DataColumn
+        Public ReadOnly Property titleColumn() As Global.System.Data.DataColumn
             Get
-                Return Me.columndate
+                Return Me.columntitle
             End Get
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property openedColumn() As Global.System.Data.DataColumn
+        Public ReadOnly Property setDateColumn() As Global.System.Data.DataColumn
             Get
-                Return Me.columnopened
+                Return Me.columnsetDate
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property deadlineDateColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columndeadlineDate
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property delColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columndel
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property notesColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnnotes
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property lockedColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnlocked
             End Get
         End Property
         
@@ -1242,53 +873,50 @@ Partial Public Class fileportalDataSet1
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Default ReadOnly Property Item(ByVal index As Integer) As filecheckRow
+        Public Default ReadOnly Property Item(ByVal index As Integer) As assignmentRow
             Get
-                Return CType(Me.Rows(index),filecheckRow)
+                Return CType(Me.Rows(index),assignmentRow)
             End Get
         End Property
         
         <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Event filecheckRowChanging As filecheckRowChangeEventHandler
+        Public Event assignmentRowChanging As assignmentRowChangeEventHandler
         
         <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Event filecheckRowChanged As filecheckRowChangeEventHandler
+        Public Event assignmentRowChanged As assignmentRowChangeEventHandler
         
         <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Event filecheckRowDeleting As filecheckRowChangeEventHandler
+        Public Event assignmentRowDeleting As assignmentRowChangeEventHandler
         
         <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Event filecheckRowDeleted As filecheckRowChangeEventHandler
+        Public Event assignmentRowDeleted As assignmentRowChangeEventHandler
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overloads Sub AddfilecheckRow(ByVal row As filecheckRow)
+        Public Overloads Sub AddassignmentRow(ByVal row As assignmentRow)
             Me.Rows.Add(row)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overloads Function AddfilecheckRow(ByVal username As String, ByVal parentfiledataRowByFK_filecheck_filedata1 As filedataRow, ByVal _date As Date, ByVal opened As Boolean) As filecheckRow
-            Dim rowfilecheckRow As filecheckRow = CType(Me.NewRow,filecheckRow)
-            Dim columnValuesArray() As Object = New Object() {Nothing, username, Nothing, _date, opened}
-            If (Not (parentfiledataRowByFK_filecheck_filedata1) Is Nothing) Then
-                columnValuesArray(2) = parentfiledataRowByFK_filecheck_filedata1(0)
-            End If
-            rowfilecheckRow.ItemArray = columnValuesArray
-            Me.Rows.Add(rowfilecheckRow)
-            Return rowfilecheckRow
+        Public Overloads Function AddassignmentRow(ByVal teacher As String, ByVal _class As String, ByVal title As String, ByVal setDate As Date, ByVal deadlineDate As Date, ByVal del As Boolean, ByVal notes As String, ByVal locked As Boolean) As assignmentRow
+            Dim rowassignmentRow As assignmentRow = CType(Me.NewRow,assignmentRow)
+            Dim columnValuesArray() As Object = New Object() {Nothing, teacher, _class, title, setDate, deadlineDate, del, notes, locked}
+            rowassignmentRow.ItemArray = columnValuesArray
+            Me.Rows.Add(rowassignmentRow)
+            Return rowassignmentRow
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function FindByidFilecheck(ByVal idFilecheck As Integer) As filecheckRow
-            Return CType(Me.Rows.Find(New Object() {idFilecheck}),filecheckRow)
+        Public Function FindByidAssignment(ByVal idAssignment As Integer) As assignmentRow
+            Return CType(Me.Rows.Find(New Object() {idAssignment}),assignmentRow)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Overrides Function Clone() As Global.System.Data.DataTable
-            Dim cln As filecheckDataTable = CType(MyBase.Clone,filecheckDataTable)
+            Dim cln As assignmentDataTable = CType(MyBase.Clone,assignmentDataTable)
             cln.InitVars
             Return cln
         End Function
@@ -1296,73 +924,91 @@ Partial Public Class fileportalDataSet1
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Protected Overrides Function CreateInstance() As Global.System.Data.DataTable
-            Return New filecheckDataTable()
+            Return New assignmentDataTable()
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Friend Sub InitVars()
-            Me.columnidFilecheck = MyBase.Columns("idFilecheck")
-            Me.columnusername = MyBase.Columns("username")
-            Me.columnidFiledata = MyBase.Columns("idFiledata")
-            Me.columndate = MyBase.Columns("date")
-            Me.columnopened = MyBase.Columns("opened")
+            Me.columnidAssignment = MyBase.Columns("idAssignment")
+            Me.columnteacher = MyBase.Columns("teacher")
+            Me.columnclass = MyBase.Columns("class")
+            Me.columntitle = MyBase.Columns("title")
+            Me.columnsetDate = MyBase.Columns("setDate")
+            Me.columndeadlineDate = MyBase.Columns("deadlineDate")
+            Me.columndel = MyBase.Columns("del")
+            Me.columnnotes = MyBase.Columns("notes")
+            Me.columnlocked = MyBase.Columns("locked")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Private Sub InitClass()
-            Me.columnidFilecheck = New Global.System.Data.DataColumn("idFilecheck", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnidFilecheck)
-            Me.columnusername = New Global.System.Data.DataColumn("username", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnusername)
-            Me.columnidFiledata = New Global.System.Data.DataColumn("idFiledata", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnidFiledata)
-            Me.columndate = New Global.System.Data.DataColumn("date", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
-            Me.columndate.ExtendedProperties.Add("Generator_ColumnPropNameInTable", "dateColumn")
-            Me.columndate.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "columndate")
-            Me.columndate.ExtendedProperties.Add("Generator_UserColumnName", "date")
-            MyBase.Columns.Add(Me.columndate)
-            Me.columnopened = New Global.System.Data.DataColumn("opened", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnopened)
-            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnidFilecheck}, true))
-            Me.columnidFilecheck.AutoIncrement = true
-            Me.columnidFilecheck.AutoIncrementSeed = -1
-            Me.columnidFilecheck.AutoIncrementStep = -1
-            Me.columnidFilecheck.AllowDBNull = false
-            Me.columnidFilecheck.ReadOnly = true
-            Me.columnidFilecheck.Unique = true
-            Me.columnusername.AllowDBNull = false
-            Me.columnusername.MaxLength = 50
-            Me.columnidFiledata.AllowDBNull = false
-            Me.columndate.AllowDBNull = false
-            Me.columnopened.AllowDBNull = false
+            Me.columnidAssignment = New Global.System.Data.DataColumn("idAssignment", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnidAssignment)
+            Me.columnteacher = New Global.System.Data.DataColumn("teacher", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnteacher)
+            Me.columnclass = New Global.System.Data.DataColumn("class", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.columnclass.ExtendedProperties.Add("Generator_ColumnPropNameInTable", "classColumn")
+            Me.columnclass.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "columnclass")
+            Me.columnclass.ExtendedProperties.Add("Generator_UserColumnName", "class")
+            MyBase.Columns.Add(Me.columnclass)
+            Me.columntitle = New Global.System.Data.DataColumn("title", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columntitle)
+            Me.columnsetDate = New Global.System.Data.DataColumn("setDate", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnsetDate)
+            Me.columndeadlineDate = New Global.System.Data.DataColumn("deadlineDate", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columndeadlineDate)
+            Me.columndel = New Global.System.Data.DataColumn("del", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columndel)
+            Me.columnnotes = New Global.System.Data.DataColumn("notes", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnnotes)
+            Me.columnlocked = New Global.System.Data.DataColumn("locked", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnlocked)
+            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnidAssignment}, true))
+            Me.columnidAssignment.AutoIncrement = true
+            Me.columnidAssignment.AutoIncrementSeed = -1
+            Me.columnidAssignment.AutoIncrementStep = -1
+            Me.columnidAssignment.AllowDBNull = false
+            Me.columnidAssignment.ReadOnly = true
+            Me.columnidAssignment.Unique = true
+            Me.columnteacher.AllowDBNull = false
+            Me.columnteacher.MaxLength = 50
+            Me.columnclass.AllowDBNull = false
+            Me.columnclass.MaxLength = 10
+            Me.columntitle.AllowDBNull = false
+            Me.columntitle.MaxLength = 50
+            Me.columnsetDate.AllowDBNull = false
+            Me.columndeadlineDate.AllowDBNull = false
+            Me.columndel.AllowDBNull = false
+            Me.columnnotes.MaxLength = 1000
+            Me.columnlocked.AllowDBNull = false
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function NewfilecheckRow() As filecheckRow
-            Return CType(Me.NewRow,filecheckRow)
+        Public Function NewassignmentRow() As assignmentRow
+            Return CType(Me.NewRow,assignmentRow)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Protected Overrides Function NewRowFromBuilder(ByVal builder As Global.System.Data.DataRowBuilder) As Global.System.Data.DataRow
-            Return New filecheckRow(builder)
+            Return New assignmentRow(builder)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Protected Overrides Function GetRowType() As Global.System.Type
-            Return GetType(filecheckRow)
+            Return GetType(assignmentRow)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Protected Overrides Sub OnRowChanged(ByVal e As Global.System.Data.DataRowChangeEventArgs)
             MyBase.OnRowChanged(e)
-            If (Not (Me.filecheckRowChangedEvent) Is Nothing) Then
-                RaiseEvent filecheckRowChanged(Me, New filecheckRowChangeEvent(CType(e.Row,filecheckRow), e.Action))
+            If (Not (Me.assignmentRowChangedEvent) Is Nothing) Then
+                RaiseEvent assignmentRowChanged(Me, New assignmentRowChangeEvent(CType(e.Row,assignmentRow), e.Action))
             End If
         End Sub
         
@@ -1370,8 +1016,8 @@ Partial Public Class fileportalDataSet1
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Protected Overrides Sub OnRowChanging(ByVal e As Global.System.Data.DataRowChangeEventArgs)
             MyBase.OnRowChanging(e)
-            If (Not (Me.filecheckRowChangingEvent) Is Nothing) Then
-                RaiseEvent filecheckRowChanging(Me, New filecheckRowChangeEvent(CType(e.Row,filecheckRow), e.Action))
+            If (Not (Me.assignmentRowChangingEvent) Is Nothing) Then
+                RaiseEvent assignmentRowChanging(Me, New assignmentRowChangeEvent(CType(e.Row,assignmentRow), e.Action))
             End If
         End Sub
         
@@ -1379,8 +1025,8 @@ Partial Public Class fileportalDataSet1
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Protected Overrides Sub OnRowDeleted(ByVal e As Global.System.Data.DataRowChangeEventArgs)
             MyBase.OnRowDeleted(e)
-            If (Not (Me.filecheckRowDeletedEvent) Is Nothing) Then
-                RaiseEvent filecheckRowDeleted(Me, New filecheckRowChangeEvent(CType(e.Row,filecheckRow), e.Action))
+            If (Not (Me.assignmentRowDeletedEvent) Is Nothing) Then
+                RaiseEvent assignmentRowDeleted(Me, New assignmentRowChangeEvent(CType(e.Row,assignmentRow), e.Action))
             End If
         End Sub
         
@@ -1388,14 +1034,14 @@ Partial Public Class fileportalDataSet1
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Protected Overrides Sub OnRowDeleting(ByVal e As Global.System.Data.DataRowChangeEventArgs)
             MyBase.OnRowDeleting(e)
-            If (Not (Me.filecheckRowDeletingEvent) Is Nothing) Then
-                RaiseEvent filecheckRowDeleting(Me, New filecheckRowChangeEvent(CType(e.Row,filecheckRow), e.Action))
+            If (Not (Me.assignmentRowDeletingEvent) Is Nothing) Then
+                RaiseEvent assignmentRowDeleting(Me, New assignmentRowChangeEvent(CType(e.Row,assignmentRow), e.Action))
             End If
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub RemovefilecheckRow(ByVal row As filecheckRow)
+        Public Sub RemoveassignmentRow(ByVal row As assignmentRow)
             Me.Rows.Remove(row)
         End Sub
         
@@ -1422,7 +1068,7 @@ Partial Public Class fileportalDataSet1
             type.Attributes.Add(attribute1)
             Dim attribute2 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
             attribute2.Name = "tableTypeName"
-            attribute2.FixedValue = "filecheckDataTable"
+            attribute2.FixedValue = "assignmentDataTable"
             type.Attributes.Add(attribute2)
             type.Particle = sequence
             Dim dsSchema As Global.System.Xml.Schema.XmlSchema = ds.GetSchemaSerializable
@@ -1463,136 +1109,6 @@ Partial Public Class fileportalDataSet1
             End If
             xs.Add(dsSchema)
             Return type
-        End Function
-    End Class
-    
-    '''<summary>
-    '''Represents strongly named DataRow class.
-    '''</summary>
-    Partial Public Class assignmentRow
-        Inherits Global.System.Data.DataRow
-        
-        Private tableassignment As assignmentDataTable
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Friend Sub New(ByVal rb As Global.System.Data.DataRowBuilder)
-            MyBase.New(rb)
-            Me.tableassignment = CType(Me.Table,assignmentDataTable)
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property idAssignment() As Integer
-            Get
-                Return CType(Me(Me.tableassignment.idAssignmentColumn),Integer)
-            End Get
-            Set
-                Me(Me.tableassignment.idAssignmentColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property teacher() As String
-            Get
-                Return CType(Me(Me.tableassignment.teacherColumn),String)
-            End Get
-            Set
-                Me(Me.tableassignment.teacherColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property _class() As String
-            Get
-                Return CType(Me(Me.tableassignment.classColumn),String)
-            End Get
-            Set
-                Me(Me.tableassignment.classColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property title() As String
-            Get
-                Return CType(Me(Me.tableassignment.titleColumn),String)
-            End Get
-            Set
-                Me(Me.tableassignment.titleColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property setDate() As Date
-            Get
-                Return CType(Me(Me.tableassignment.setDateColumn),Date)
-            End Get
-            Set
-                Me(Me.tableassignment.setDateColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property deadlineDate() As Date
-            Get
-                Return CType(Me(Me.tableassignment.deadlineDateColumn),Date)
-            End Get
-            Set
-                Me(Me.tableassignment.deadlineDateColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property del() As Boolean
-            Get
-                Return CType(Me(Me.tableassignment.delColumn),Boolean)
-            End Get
-            Set
-                Me(Me.tableassignment.delColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property notes() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableassignment.notesColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'notes' in table 'assignment' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableassignment.notesColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsnotesNull() As Boolean
-            Return Me.IsNull(Me.tableassignment.notesColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetnotesNull()
-            Me(Me.tableassignment.notesColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function GetfiledataRows() As filedataRow()
-            If (Me.Table.ChildRelations("FK_filedata_Assignment") Is Nothing) Then
-                Return New filedataRow(-1) {}
-            Else
-                Return CType(MyBase.GetChildRows(Me.Table.ChildRelations("FK_filedata_Assignment")),filedataRow())
-            End If
         End Function
     End Class
     
@@ -1742,134 +1258,147 @@ Partial Public Class fileportalDataSet1
                 Me.SetParentRow(value, Me.Table.ParentRelations("FK_filedata_Assignment"))
             End Set
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function GetfilecheckRows() As filecheckRow()
-            If (Me.Table.ChildRelations("FK_filecheck_filedata1") Is Nothing) Then
-                Return New filecheckRow(-1) {}
-            Else
-                Return CType(MyBase.GetChildRows(Me.Table.ChildRelations("FK_filecheck_filedata1")),filecheckRow())
-            End If
-        End Function
     End Class
     
     '''<summary>
     '''Represents strongly named DataRow class.
     '''</summary>
-    Partial Public Class filecheckRow
+    Partial Public Class assignmentRow
         Inherits Global.System.Data.DataRow
         
-        Private tablefilecheck As filecheckDataTable
+        Private tableassignment As assignmentDataTable
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Friend Sub New(ByVal rb As Global.System.Data.DataRowBuilder)
             MyBase.New(rb)
-            Me.tablefilecheck = CType(Me.Table,filecheckDataTable)
+            Me.tableassignment = CType(Me.Table,assignmentDataTable)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property idFilecheck() As Integer
+        Public Property idAssignment() As Integer
             Get
-                Return CType(Me(Me.tablefilecheck.idFilecheckColumn),Integer)
+                Return CType(Me(Me.tableassignment.idAssignmentColumn),Integer)
             End Get
             Set
-                Me(Me.tablefilecheck.idFilecheckColumn) = value
+                Me(Me.tableassignment.idAssignmentColumn) = value
             End Set
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property username() As String
+        Public Property teacher() As String
             Get
-                Return CType(Me(Me.tablefilecheck.usernameColumn),String)
+                Return CType(Me(Me.tableassignment.teacherColumn),String)
             End Get
             Set
-                Me(Me.tablefilecheck.usernameColumn) = value
+                Me(Me.tableassignment.teacherColumn) = value
             End Set
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property idFiledata() As Integer
+        Public Property _class() As String
             Get
-                Return CType(Me(Me.tablefilecheck.idFiledataColumn),Integer)
+                Return CType(Me(Me.tableassignment.classColumn),String)
             End Get
             Set
-                Me(Me.tablefilecheck.idFiledataColumn) = value
+                Me(Me.tableassignment.classColumn) = value
             End Set
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property _date() As Date
+        Public Property title() As String
             Get
-                Return CType(Me(Me.tablefilecheck.dateColumn),Date)
+                Return CType(Me(Me.tableassignment.titleColumn),String)
             End Get
             Set
-                Me(Me.tablefilecheck.dateColumn) = value
+                Me(Me.tableassignment.titleColumn) = value
             End Set
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property opened() As Boolean
+        Public Property setDate() As Date
             Get
-                Return CType(Me(Me.tablefilecheck.openedColumn),Boolean)
+                Return CType(Me(Me.tableassignment.setDateColumn),Date)
             End Get
             Set
-                Me(Me.tablefilecheck.openedColumn) = value
+                Me(Me.tableassignment.setDateColumn) = value
             End Set
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property filedataRow() As filedataRow
+        Public Property deadlineDate() As Date
             Get
-                Return CType(Me.GetParentRow(Me.Table.ParentRelations("FK_filecheck_filedata1")),filedataRow)
+                Return CType(Me(Me.tableassignment.deadlineDateColumn),Date)
             End Get
             Set
-                Me.SetParentRow(value, Me.Table.ParentRelations("FK_filecheck_filedata1"))
+                Me(Me.tableassignment.deadlineDateColumn) = value
             End Set
         End Property
-    End Class
-    
-    '''<summary>
-    '''Row event argument class
-    '''</summary>
-    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-    Public Class assignmentRowChangeEvent
-        Inherits Global.System.EventArgs
-        
-        Private eventRow As assignmentRow
-        
-        Private eventAction As Global.System.Data.DataRowAction
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub New(ByVal row As assignmentRow, ByVal action As Global.System.Data.DataRowAction)
-            MyBase.New
-            Me.eventRow = row
-            Me.eventAction = action
+        Public Property del() As Boolean
+            Get
+                Return CType(Me(Me.tableassignment.delColumn),Boolean)
+            End Get
+            Set
+                Me(Me.tableassignment.delColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property notes() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableassignment.notesColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'notes' in table 'assignment' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableassignment.notesColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property locked() As Boolean
+            Get
+                Return CType(Me(Me.tableassignment.lockedColumn),Boolean)
+            End Get
+            Set
+                Me(Me.tableassignment.lockedColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsnotesNull() As Boolean
+            Return Me.IsNull(Me.tableassignment.notesColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetnotesNull()
+            Me(Me.tableassignment.notesColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property Row() As assignmentRow
-            Get
-                Return Me.eventRow
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property Action() As Global.System.Data.DataRowAction
-            Get
-                Return Me.eventAction
-            End Get
-        End Property
+        Public Function GetfiledataRows() As filedataRow()
+            If (Me.Table.ChildRelations("FK_filedata_Assignment") Is Nothing) Then
+                Return New filedataRow(-1) {}
+            Else
+                Return CType(MyBase.GetChildRows(Me.Table.ChildRelations("FK_filedata_Assignment")),filedataRow())
+            End If
+        End Function
     End Class
     
     '''<summary>
@@ -1912,16 +1441,16 @@ Partial Public Class fileportalDataSet1
     '''Row event argument class
     '''</summary>
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-    Public Class filecheckRowChangeEvent
+    Public Class assignmentRowChangeEvent
         Inherits Global.System.EventArgs
         
-        Private eventRow As filecheckRow
+        Private eventRow As assignmentRow
         
         Private eventAction As Global.System.Data.DataRowAction
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub New(ByVal row As filecheckRow, ByVal action As Global.System.Data.DataRowAction)
+        Public Sub New(ByVal row As assignmentRow, ByVal action As Global.System.Data.DataRowAction)
             MyBase.New
             Me.eventRow = row
             Me.eventAction = action
@@ -1929,7 +1458,7 @@ Partial Public Class fileportalDataSet1
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property Row() As filecheckRow
+        Public ReadOnly Property Row() As assignmentRow
             Get
                 Return Me.eventRow
             End Get
@@ -1946,475 +1475,6 @@ Partial Public Class fileportalDataSet1
 End Class
 
 Namespace fileportalDataSet1TableAdapters
-    
-    '''<summary>
-    '''Represents the connection and commands used to retrieve and save data.
-    '''</summary>
-    <Global.System.ComponentModel.DesignerCategoryAttribute("code"),  _
-     Global.System.ComponentModel.ToolboxItem(true),  _
-     Global.System.ComponentModel.DataObjectAttribute(true),  _
-     Global.System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner"& _ 
-        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"),  _
-     Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-    Partial Public Class assignmentTableAdapter
-        Inherits Global.System.ComponentModel.Component
-        
-        Private WithEvents _adapter As Global.System.Data.SqlClient.SqlDataAdapter
-        
-        Private _connection As Global.System.Data.SqlClient.SqlConnection
-        
-        Private _transaction As Global.System.Data.SqlClient.SqlTransaction
-        
-        Private _commandCollection() As Global.System.Data.SqlClient.SqlCommand
-        
-        Private _clearBeforeFill As Boolean
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub New()
-            MyBase.New
-            Me.ClearBeforeFill = true
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Protected Friend ReadOnly Property Adapter() As Global.System.Data.SqlClient.SqlDataAdapter
-            Get
-                If (Me._adapter Is Nothing) Then
-                    Me.InitAdapter
-                End If
-                Return Me._adapter
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Friend Property Connection() As Global.System.Data.SqlClient.SqlConnection
-            Get
-                If (Me._connection Is Nothing) Then
-                    Me.InitConnection
-                End If
-                Return Me._connection
-            End Get
-            Set
-                Me._connection = value
-                If (Not (Me.Adapter.InsertCommand) Is Nothing) Then
-                    Me.Adapter.InsertCommand.Connection = value
-                End If
-                If (Not (Me.Adapter.DeleteCommand) Is Nothing) Then
-                    Me.Adapter.DeleteCommand.Connection = value
-                End If
-                If (Not (Me.Adapter.UpdateCommand) Is Nothing) Then
-                    Me.Adapter.UpdateCommand.Connection = value
-                End If
-                Dim i As Integer = 0
-                Do While (i < Me.CommandCollection.Length)
-                    If (Not (Me.CommandCollection(i)) Is Nothing) Then
-                        CType(Me.CommandCollection(i),Global.System.Data.SqlClient.SqlCommand).Connection = value
-                    End If
-                    i = (i + 1)
-                Loop
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Friend Property Transaction() As Global.System.Data.SqlClient.SqlTransaction
-            Get
-                Return Me._transaction
-            End Get
-            Set
-                Me._transaction = value
-                Dim i As Integer = 0
-                Do While (i < Me.CommandCollection.Length)
-                    Me.CommandCollection(i).Transaction = Me._transaction
-                    i = (i + 1)
-                Loop
-                If ((Not (Me.Adapter) Is Nothing)  _
-                            AndAlso (Not (Me.Adapter.DeleteCommand) Is Nothing)) Then
-                    Me.Adapter.DeleteCommand.Transaction = Me._transaction
-                End If
-                If ((Not (Me.Adapter) Is Nothing)  _
-                            AndAlso (Not (Me.Adapter.InsertCommand) Is Nothing)) Then
-                    Me.Adapter.InsertCommand.Transaction = Me._transaction
-                End If
-                If ((Not (Me.Adapter) Is Nothing)  _
-                            AndAlso (Not (Me.Adapter.UpdateCommand) Is Nothing)) Then
-                    Me.Adapter.UpdateCommand.Transaction = Me._transaction
-                End If
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Protected ReadOnly Property CommandCollection() As Global.System.Data.SqlClient.SqlCommand()
-            Get
-                If (Me._commandCollection Is Nothing) Then
-                    Me.InitCommandCollection
-                End If
-                Return Me._commandCollection
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property ClearBeforeFill() As Boolean
-            Get
-                Return Me._clearBeforeFill
-            End Get
-            Set
-                Me._clearBeforeFill = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Private Sub InitAdapter()
-            Me._adapter = New Global.System.Data.SqlClient.SqlDataAdapter()
-            Dim tableMapping As Global.System.Data.Common.DataTableMapping = New Global.System.Data.Common.DataTableMapping()
-            tableMapping.SourceTable = "Table"
-            tableMapping.DataSetTable = "assignment"
-            tableMapping.ColumnMappings.Add("idAssignment", "idAssignment")
-            tableMapping.ColumnMappings.Add("teacher", "teacher")
-            tableMapping.ColumnMappings.Add("class", "class")
-            tableMapping.ColumnMappings.Add("title", "title")
-            tableMapping.ColumnMappings.Add("setDate", "setDate")
-            tableMapping.ColumnMappings.Add("deadlineDate", "deadlineDate")
-            tableMapping.ColumnMappings.Add("del", "del")
-            tableMapping.ColumnMappings.Add("notes", "notes")
-            Me._adapter.TableMappings.Add(tableMapping)
-            Me._adapter.DeleteCommand = New Global.System.Data.SqlClient.SqlCommand()
-            Me._adapter.DeleteCommand.Connection = Me.Connection
-            Me._adapter.DeleteCommand.CommandText = "DELETE FROM [assignment] WHERE (([idAssignment] = @Original_idAssignment) AND ([t"& _ 
-                "eacher] = @Original_teacher) AND ([class] = @Original_class) AND ([title] = @Ori"& _ 
-                "ginal_title) AND ([setDate] = @Original_setDate) AND ([deadlineDate] = @Original"& _ 
-                "_deadlineDate) AND ([del] = @Original_del) AND ((@IsNull_notes = 1 AND [notes] I"& _ 
-                "S NULL) OR ([notes] = @Original_notes)))"
-            Me._adapter.DeleteCommand.CommandType = Global.System.Data.CommandType.Text
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_idAssignment", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "idAssignment", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_teacher", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "teacher", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_class", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "class", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_title", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "title", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_setDate", Global.System.Data.SqlDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, 0, 0, "setDate", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_deadlineDate", Global.System.Data.SqlDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, 0, 0, "deadlineDate", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_del", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "del", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_notes", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "notes", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_notes", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "notes", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand = New Global.System.Data.SqlClient.SqlCommand()
-            Me._adapter.InsertCommand.Connection = Me.Connection
-            Me._adapter.InsertCommand.CommandText = "INSERT INTO [assignment] ([teacher], [class], [title], [setDate], [deadlineDate],"& _ 
-                " [del], [notes]) VALUES (@teacher, @class, @title, @setDate, @deadlineDate, @del"& _ 
-                ", @notes);"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT idAssignment, teacher, class, title, setDate, deadlineDate, d"& _ 
-                "el, notes FROM assignment WHERE (idAssignment = SCOPE_IDENTITY())"
-            Me._adapter.InsertCommand.CommandType = Global.System.Data.CommandType.Text
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@teacher", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "teacher", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@class", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "class", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@title", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "title", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@setDate", Global.System.Data.SqlDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, 0, 0, "setDate", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@deadlineDate", Global.System.Data.SqlDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, 0, 0, "deadlineDate", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@del", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "del", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@notes", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "notes", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand = New Global.System.Data.SqlClient.SqlCommand()
-            Me._adapter.UpdateCommand.Connection = Me.Connection
-            Me._adapter.UpdateCommand.CommandText = "UPDATE [assignment] SET [teacher] = @teacher, [class] = @class, [title] = @title,"& _ 
-                " [setDate] = @setDate, [deadlineDate] = @deadlineDate, [del] = @del, [notes] = @"& _ 
-                "notes WHERE (([idAssignment] = @Original_idAssignment) AND ([teacher] = @Origina"& _ 
-                "l_teacher) AND ([class] = @Original_class) AND ([title] = @Original_title) AND ("& _ 
-                "[setDate] = @Original_setDate) AND ([deadlineDate] = @Original_deadlineDate) AND"& _ 
-                " ([del] = @Original_del) AND ((@IsNull_notes = 1 AND [notes] IS NULL) OR ([notes"& _ 
-                "] = @Original_notes)));"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT idAssignment, teacher, class, title, setDate, de"& _ 
-                "adlineDate, del, notes FROM assignment WHERE (idAssignment = @idAssignment)"
-            Me._adapter.UpdateCommand.CommandType = Global.System.Data.CommandType.Text
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@teacher", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "teacher", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@class", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "class", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@title", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "title", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@setDate", Global.System.Data.SqlDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, 0, 0, "setDate", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@deadlineDate", Global.System.Data.SqlDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, 0, 0, "deadlineDate", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@del", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "del", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@notes", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "notes", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_idAssignment", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "idAssignment", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_teacher", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "teacher", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_class", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "class", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_title", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "title", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_setDate", Global.System.Data.SqlDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, 0, 0, "setDate", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_deadlineDate", Global.System.Data.SqlDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, 0, 0, "deadlineDate", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_del", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "del", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_notes", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "notes", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_notes", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "notes", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@idAssignment", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "idAssignment", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Private Sub InitConnection()
-            Me._connection = New Global.System.Data.SqlClient.SqlConnection()
-            Me._connection.ConnectionString = Global.FilePortalSync.My.MySettings.Default.fileportalConnectionString
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Private Sub InitCommandCollection()
-            Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(1) {}
-            Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
-            Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT idAssignment, teacher, class, title, setDate, deadlineDate, del, notes FRO"& _ 
-                "M assignment"
-            Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
-            Me._commandCollection(1) = New Global.System.Data.SqlClient.SqlCommand()
-            Me._commandCollection(1).Connection = Me.Connection
-            Me._commandCollection(1).CommandText = "SELECT idAssignment, teacher, class, title, setDate, deadlineDate, del, notes FRO"& _ 
-                "M assignment WHERE (idAssignment = @aid)"
-            Me._commandCollection(1).CommandType = Global.System.Data.CommandType.Text
-            Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@aid", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "idAssignment", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, true)>  _
-        Public Overloads Overridable Function Fill(ByVal dataTable As fileportalDataSet1.assignmentDataTable) As Integer
-            Me.Adapter.SelectCommand = Me.CommandCollection(0)
-            If (Me.ClearBeforeFill = true) Then
-                dataTable.Clear
-            End If
-            Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
-            Return returnValue
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], true)>  _
-        Public Overloads Overridable Function GetData() As fileportalDataSet1.assignmentDataTable
-            Me.Adapter.SelectCommand = Me.CommandCollection(0)
-            Dim dataTable As fileportalDataSet1.assignmentDataTable = New fileportalDataSet1.assignmentDataTable()
-            Me.Adapter.Fill(dataTable)
-            Return dataTable
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], false)>  _
-        Public Overloads Overridable Function GetAssignmentByID(ByVal aid As Integer) As fileportalDataSet1.assignmentDataTable
-            Me.Adapter.SelectCommand = Me.CommandCollection(1)
-            Me.Adapter.SelectCommand.Parameters(0).Value = CType(aid,Integer)
-            Dim dataTable As fileportalDataSet1.assignmentDataTable = New fileportalDataSet1.assignmentDataTable()
-            Me.Adapter.Fill(dataTable)
-            Return dataTable
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function Update(ByVal dataTable As fileportalDataSet1.assignmentDataTable) As Integer
-            Return Me.Adapter.Update(dataTable)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function Update(ByVal dataSet As fileportalDataSet1) As Integer
-            Return Me.Adapter.Update(dataSet, "assignment")
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function Update(ByVal dataRow As Global.System.Data.DataRow) As Integer
-            Return Me.Adapter.Update(New Global.System.Data.DataRow() {dataRow})
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function Update(ByVal dataRows() As Global.System.Data.DataRow) As Integer
-            Return Me.Adapter.Update(dataRows)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, true)>  _
-        Public Overloads Overridable Function Delete(ByVal Original_idAssignment As Integer, ByVal Original_teacher As String, ByVal Original_class As String, ByVal Original_title As String, ByVal Original_setDate As Date, ByVal Original_deadlineDate As Date, ByVal Original_del As Boolean, ByVal Original_notes As String) As Integer
-            Me.Adapter.DeleteCommand.Parameters(0).Value = CType(Original_idAssignment,Integer)
-            If (Original_teacher Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_teacher")
-            Else
-                Me.Adapter.DeleteCommand.Parameters(1).Value = CType(Original_teacher,String)
-            End If
-            If (Original_class Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_class")
-            Else
-                Me.Adapter.DeleteCommand.Parameters(2).Value = CType(Original_class,String)
-            End If
-            If (Original_title Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_title")
-            Else
-                Me.Adapter.DeleteCommand.Parameters(3).Value = CType(Original_title,String)
-            End If
-            Me.Adapter.DeleteCommand.Parameters(4).Value = CType(Original_setDate,Date)
-            Me.Adapter.DeleteCommand.Parameters(5).Value = CType(Original_deadlineDate,Date)
-            Me.Adapter.DeleteCommand.Parameters(6).Value = CType(Original_del,Boolean)
-            If (Original_notes Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(7).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(8).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.DeleteCommand.Parameters(7).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(8).Value = CType(Original_notes,String)
-            End If
-            Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.DeleteCommand.Connection.State
-            If ((Me.Adapter.DeleteCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
-                        <> Global.System.Data.ConnectionState.Open) Then
-                Me.Adapter.DeleteCommand.Connection.Open
-            End If
-            Try 
-                Dim returnValue As Integer = Me.Adapter.DeleteCommand.ExecuteNonQuery
-                Return returnValue
-            Finally
-                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
-                    Me.Adapter.DeleteCommand.Connection.Close
-                End If
-            End Try
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, true)>  _
-        Public Overloads Overridable Function Insert(ByVal teacher As String, ByVal _class As String, ByVal title As String, ByVal setDate As Date, ByVal deadlineDate As Date, ByVal del As Boolean, ByVal notes As String) As Integer
-            If (teacher Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("teacher")
-            Else
-                Me.Adapter.InsertCommand.Parameters(0).Value = CType(teacher,String)
-            End If
-            If (_class Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("_class")
-            Else
-                Me.Adapter.InsertCommand.Parameters(1).Value = CType(_class,String)
-            End If
-            If (title Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("title")
-            Else
-                Me.Adapter.InsertCommand.Parameters(2).Value = CType(title,String)
-            End If
-            Me.Adapter.InsertCommand.Parameters(3).Value = CType(setDate,Date)
-            Me.Adapter.InsertCommand.Parameters(4).Value = CType(deadlineDate,Date)
-            Me.Adapter.InsertCommand.Parameters(5).Value = CType(del,Boolean)
-            If (notes Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(6).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(6).Value = CType(notes,String)
-            End If
-            Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.InsertCommand.Connection.State
-            If ((Me.Adapter.InsertCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
-                        <> Global.System.Data.ConnectionState.Open) Then
-                Me.Adapter.InsertCommand.Connection.Open
-            End If
-            Try 
-                Dim returnValue As Integer = Me.Adapter.InsertCommand.ExecuteNonQuery
-                Return returnValue
-            Finally
-                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
-                    Me.Adapter.InsertCommand.Connection.Close
-                End If
-            End Try
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
-        Public Overloads Overridable Function Update( _
-                    ByVal teacher As String,  _
-                    ByVal _class As String,  _
-                    ByVal title As String,  _
-                    ByVal setDate As Date,  _
-                    ByVal deadlineDate As Date,  _
-                    ByVal del As Boolean,  _
-                    ByVal notes As String,  _
-                    ByVal Original_idAssignment As Integer,  _
-                    ByVal Original_teacher As String,  _
-                    ByVal Original_class As String,  _
-                    ByVal Original_title As String,  _
-                    ByVal Original_setDate As Date,  _
-                    ByVal Original_deadlineDate As Date,  _
-                    ByVal Original_del As Boolean,  _
-                    ByVal Original_notes As String,  _
-                    ByVal idAssignment As Integer) As Integer
-            If (teacher Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("teacher")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(0).Value = CType(teacher,String)
-            End If
-            If (_class Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("_class")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(1).Value = CType(_class,String)
-            End If
-            If (title Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("title")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(2).Value = CType(title,String)
-            End If
-            Me.Adapter.UpdateCommand.Parameters(3).Value = CType(setDate,Date)
-            Me.Adapter.UpdateCommand.Parameters(4).Value = CType(deadlineDate,Date)
-            Me.Adapter.UpdateCommand.Parameters(5).Value = CType(del,Boolean)
-            If (notes Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(6).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(6).Value = CType(notes,String)
-            End If
-            Me.Adapter.UpdateCommand.Parameters(7).Value = CType(Original_idAssignment,Integer)
-            If (Original_teacher Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_teacher")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(8).Value = CType(Original_teacher,String)
-            End If
-            If (Original_class Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_class")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(9).Value = CType(Original_class,String)
-            End If
-            If (Original_title Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_title")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(10).Value = CType(Original_title,String)
-            End If
-            Me.Adapter.UpdateCommand.Parameters(11).Value = CType(Original_setDate,Date)
-            Me.Adapter.UpdateCommand.Parameters(12).Value = CType(Original_deadlineDate,Date)
-            Me.Adapter.UpdateCommand.Parameters(13).Value = CType(Original_del,Boolean)
-            If (Original_notes Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(14).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(15).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(14).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(15).Value = CType(Original_notes,String)
-            End If
-            Me.Adapter.UpdateCommand.Parameters(16).Value = CType(idAssignment,Integer)
-            Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.UpdateCommand.Connection.State
-            If ((Me.Adapter.UpdateCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
-                        <> Global.System.Data.ConnectionState.Open) Then
-                Me.Adapter.UpdateCommand.Connection.Open
-            End If
-            Try 
-                Dim returnValue As Integer = Me.Adapter.UpdateCommand.ExecuteNonQuery
-                Return returnValue
-            Finally
-                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
-                    Me.Adapter.UpdateCommand.Connection.Close
-                End If
-            End Try
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
-        Public Overloads Overridable Function Update(ByVal teacher As String, ByVal _class As String, ByVal title As String, ByVal setDate As Date, ByVal deadlineDate As Date, ByVal del As Boolean, ByVal notes As String, ByVal Original_idAssignment As Integer, ByVal Original_teacher As String, ByVal Original_class As String, ByVal Original_title As String, ByVal Original_setDate As Date, ByVal Original_deadlineDate As Date, ByVal Original_del As Boolean, ByVal Original_notes As String) As Integer
-            Return Me.Update(teacher, _class, title, setDate, deadlineDate, del, notes, Original_idAssignment, Original_teacher, Original_class, Original_title, Original_setDate, Original_deadlineDate, Original_del, Original_notes, Original_idAssignment)
-        End Function
-    End Class
     
     '''<summary>
     '''Represents the connection and commands used to retrieve and save data.
@@ -2579,8 +1639,9 @@ Namespace fileportalDataSet1TableAdapters
             Me._adapter.InsertCommand.Connection = Me.Connection
             Me._adapter.InsertCommand.CommandText = "INSERT INTO [filedata] ([idAssignment], [filename], [username], [uploaded], [audi"& _ 
                 "ence], [marked], [dateSub], [sync], [del], [error]) VALUES (@idAssignment, @file"& _ 
-                "name, @username, @uploaded, @audience, @marked, @dateSub, @sync, @del, @error);"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT idFiledata, idAssignment, filename, username, uploaded, audience, marked"& _ 
-                ", dateSub, sync, del, error FROM filedata WHERE (idFiledata = SCOPE_IDENTITY())"
+                "name, @username, @uploaded, @audience, @marked, @dateSub, @sync, @del, @error);"&Global.Microsoft.VisualBasic.ChrW(10)& _ 
+                "SELECT idFiledata, idAssignment, filename, username, uploaded, audience, marked,"& _ 
+                " dateSub, sync, del, error FROM filedata WHERE (idFiledata = SCOPE_IDENTITY())"
             Me._adapter.InsertCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@idAssignment", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "idAssignment", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@filename", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "filename", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
@@ -2602,8 +1663,8 @@ Namespace fileportalDataSet1TableAdapters
                 "ame) AND ([uploaded] = @Original_uploaded) AND ([audience] = @Original_audience)"& _ 
                 " AND ([marked] = @Original_marked) AND ([dateSub] = @Original_dateSub) AND ([syn"& _ 
                 "c] = @Original_sync) AND ([del] = @Original_del) AND ([error] = @Original_error)"& _ 
-                ");"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT idFiledata, idAssignment, filename, username, uploaded, audience, mar"& _ 
-                "ked, dateSub, sync, del, error FROM filedata WHERE (idFiledata = @idFiledata)"
+                ");"&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT idFiledata, idAssignment, filename, username, uploaded, audience, mark"& _ 
+                "ed, dateSub, sync, del, error FROM filedata WHERE (idFiledata = @idFiledata)"
             Me._adapter.UpdateCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@idAssignment", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "idAssignment", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@filename", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "filename", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
@@ -2639,7 +1700,7 @@ Namespace fileportalDataSet1TableAdapters
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Private Sub InitCommandCollection()
-            Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(5) {}
+            Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(4) {}
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
             Me._commandCollection(0).CommandText = "SELECT idFiledata, idAssignment, filename, username, uploaded, audience, marked, "& _ 
@@ -2647,34 +1708,29 @@ Namespace fileportalDataSet1TableAdapters
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(1) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(1).Connection = Me.Connection
-            Me._commandCollection(1).CommandText = "DELETE FROM filedata"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (idFiledata = @rowID)"
+            Me._commandCollection(1).CommandText = "SELECT        idFiledata, idAssignment, filename, username, uploaded, audience, m"& _ 
+                "arked, dateSub, sync, del, error"&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            filedata"&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (sync = 1"& _ 
+                ") AND (uploaded = 0) AND (del = 0) AND (error = 0)"
             Me._commandCollection(1).CommandType = Global.System.Data.CommandType.Text
-            Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@rowID", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "idFiledata", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._commandCollection(2) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(2).Connection = Me.Connection
-            Me._commandCollection(2).CommandText = "SELECT        idFiledata, idAssignment, filename, username, uploaded, audience, m"& _ 
-                "arked, dateSub, sync, del, error"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            filedata"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (sync ="& _ 
-                " 1) AND (uploaded = 0) AND (del = 0) AND (error = 0)"
+            Me._commandCollection(2).CommandText = "SELECT idFiledata, idAssignment, filename, username, uploaded, audience, marked, "& _ 
+                "dateSub, sync, del, error FROM filedata WHERE (uploaded = 1) AND (del = 1)"
             Me._commandCollection(2).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(3) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(3).Connection = Me.Connection
-            Me._commandCollection(3).CommandText = "SELECT idFiledata, idAssignment, filename, username, uploaded, audience, marked, "& _ 
-                "dateSub, sync, del, error FROM filedata WHERE (uploaded = 1) AND (del = 1)"
+            Me._commandCollection(3).CommandText = "UPDATE       filedata"&Global.Microsoft.VisualBasic.ChrW(10)&"SET                error = @state"&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (idAssignmen"& _ 
+                "t = @assID); "&Global.Microsoft.VisualBasic.ChrW(10)
             Me._commandCollection(3).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(3).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@state", Global.System.Data.SqlDbType.Bit, 1, Global.System.Data.ParameterDirection.Input, 0, 0, "error", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(3).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@assID", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "idAssignment", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._commandCollection(4) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(4).Connection = Me.Connection
-            Me._commandCollection(4).CommandText = "UPDATE       filedata"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                error = @state"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (idAssignm"& _ 
-                "ent = @assID); "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)
+            Me._commandCollection(4).CommandText = "UPDATE       filedata"&Global.Microsoft.VisualBasic.ChrW(10)&"SET                uploaded = @state"&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (idAssign"& _ 
+                "ment = @aid);  "&Global.Microsoft.VisualBasic.ChrW(10)
             Me._commandCollection(4).CommandType = Global.System.Data.CommandType.Text
-            Me._commandCollection(4).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@state", Global.System.Data.SqlDbType.Bit, 1, Global.System.Data.ParameterDirection.Input, 0, 0, "error", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._commandCollection(4).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@assID", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "idAssignment", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._commandCollection(5) = New Global.System.Data.SqlClient.SqlCommand()
-            Me._commandCollection(5).Connection = Me.Connection
-            Me._commandCollection(5).CommandText = "UPDATE       filedata"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                uploaded = @state"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (idAssi"& _ 
-                "gnment = @aid);  "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)
-            Me._commandCollection(5).CommandType = Global.System.Data.CommandType.Text
-            Me._commandCollection(5).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@state", Global.System.Data.SqlDbType.Bit, 1, Global.System.Data.ParameterDirection.Input, 0, 0, "uploaded", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._commandCollection(5).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@aid", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "idAssignment", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._commandCollection(4).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@state", Global.System.Data.SqlDbType.Bit, 1, Global.System.Data.ParameterDirection.Input, 0, 0, "uploaded", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(4).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@aid", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "idAssignment", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -2706,7 +1762,7 @@ Namespace fileportalDataSet1TableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
         Public Overloads Overridable Function FillByReadyFiles(ByVal dataTable As fileportalDataSet1.filedataDataTable) As Integer
-            Me.Adapter.SelectCommand = Me.CommandCollection(2)
+            Me.Adapter.SelectCommand = Me.CommandCollection(1)
             If (Me.ClearBeforeFill = true) Then
                 dataTable.Clear
             End If
@@ -2719,7 +1775,7 @@ Namespace fileportalDataSet1TableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], false)>  _
         Public Overloads Overridable Function GetReadyFiles() As fileportalDataSet1.filedataDataTable
-            Me.Adapter.SelectCommand = Me.CommandCollection(2)
+            Me.Adapter.SelectCommand = Me.CommandCollection(1)
             Dim dataTable As fileportalDataSet1.filedataDataTable = New fileportalDataSet1.filedataDataTable()
             Me.Adapter.Fill(dataTable)
             Return dataTable
@@ -2730,7 +1786,7 @@ Namespace fileportalDataSet1TableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], false)>  _
         Public Overloads Overridable Function GetListToDelete() As fileportalDataSet1.filedataDataTable
-            Me.Adapter.SelectCommand = Me.CommandCollection(3)
+            Me.Adapter.SelectCommand = Me.CommandCollection(2)
             Dim dataTable As fileportalDataSet1.filedataDataTable = New fileportalDataSet1.filedataDataTable()
             Me.Adapter.Fill(dataTable)
             Return dataTable
@@ -2969,32 +2025,9 @@ Namespace fileportalDataSet1TableAdapters
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, false)>  _
-        Public Overloads Overridable Function DeletebyRowID(ByVal rowID As Integer) As Integer
-            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(1)
-            command.Parameters(0).Value = CType(rowID,Integer)
-            Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
-            If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
-                        <> Global.System.Data.ConnectionState.Open) Then
-                command.Connection.Open
-            End If
-            Dim returnValue As Integer
-            Try 
-                returnValue = command.ExecuteNonQuery
-            Finally
-                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
-                    command.Connection.Close
-                End If
-            End Try
-            Return returnValue
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, false)>  _
         Public Overloads Overridable Function SetError(ByVal state As Boolean, ByVal assID As Integer) As Integer
-            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(4)
+            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(3)
             command.Parameters(0).Value = CType(state,Boolean)
             command.Parameters(1).Value = CType(assID,Integer)
             Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
@@ -3018,7 +2051,7 @@ Namespace fileportalDataSet1TableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, false)>  _
         Public Overloads Overridable Function SetUploaded(ByVal state As Boolean, ByVal aid As Integer) As Integer
-            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(5)
+            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(4)
             command.Parameters(0).Value = CType(state,Boolean)
             command.Parameters(1).Value = CType(aid,Integer)
             Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
@@ -3047,7 +2080,7 @@ Namespace fileportalDataSet1TableAdapters
      Global.System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner"& _ 
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"),  _
      Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-    Partial Public Class filecheckTableAdapter
+    Partial Public Class assignmentTableAdapter
         Inherits Global.System.ComponentModel.Component
         
         Private WithEvents _adapter As Global.System.Data.SqlClient.SqlDataAdapter
@@ -3164,53 +2197,83 @@ Namespace fileportalDataSet1TableAdapters
             Me._adapter = New Global.System.Data.SqlClient.SqlDataAdapter()
             Dim tableMapping As Global.System.Data.Common.DataTableMapping = New Global.System.Data.Common.DataTableMapping()
             tableMapping.SourceTable = "Table"
-            tableMapping.DataSetTable = "filecheck"
-            tableMapping.ColumnMappings.Add("idFilecheck", "idFilecheck")
-            tableMapping.ColumnMappings.Add("username", "username")
-            tableMapping.ColumnMappings.Add("idFiledata", "idFiledata")
-            tableMapping.ColumnMappings.Add("date", "date")
-            tableMapping.ColumnMappings.Add("opened", "opened")
+            tableMapping.DataSetTable = "assignment"
+            tableMapping.ColumnMappings.Add("idAssignment", "idAssignment")
+            tableMapping.ColumnMappings.Add("teacher", "teacher")
+            tableMapping.ColumnMappings.Add("class", "class")
+            tableMapping.ColumnMappings.Add("title", "title")
+            tableMapping.ColumnMappings.Add("setDate", "setDate")
+            tableMapping.ColumnMappings.Add("deadlineDate", "deadlineDate")
+            tableMapping.ColumnMappings.Add("del", "del")
+            tableMapping.ColumnMappings.Add("notes", "notes")
+            tableMapping.ColumnMappings.Add("locked", "locked")
             Me._adapter.TableMappings.Add(tableMapping)
             Me._adapter.DeleteCommand = New Global.System.Data.SqlClient.SqlCommand()
             Me._adapter.DeleteCommand.Connection = Me.Connection
-            Me._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[filecheck] WHERE (([idFilecheck] = @Original_idFilecheck) AND "& _ 
-                "([username] = @Original_username) AND ([idFiledata] = @Original_idFiledata) AND "& _ 
-                "([date] = @Original_date) AND ([opened] = @Original_opened))"
+            Me._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[assignment] WHERE (([idAssignment] = @Original_idAssignment) A"& _ 
+                "ND ([teacher] = @Original_teacher) AND ([class] = @Original_class) AND ([title] "& _ 
+                "= @Original_title) AND ([setDate] = @Original_setDate) AND ([deadlineDate] = @Or"& _ 
+                "iginal_deadlineDate) AND ([del] = @Original_del) AND ((@IsNull_notes = 1 AND [no"& _ 
+                "tes] IS NULL) OR ([notes] = @Original_notes)) AND ([locked] = @Original_locked))"& _ 
+                ""
             Me._adapter.DeleteCommand.CommandType = Global.System.Data.CommandType.Text
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_idFilecheck", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "idFilecheck", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_username", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "username", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_idFiledata", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "idFiledata", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_date", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "date", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_opened", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "opened", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_idAssignment", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "idAssignment", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_teacher", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "teacher", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_class", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "class", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_title", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "title", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_setDate", Global.System.Data.SqlDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, 0, 0, "setDate", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_deadlineDate", Global.System.Data.SqlDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, 0, 0, "deadlineDate", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_del", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "del", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_notes", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "notes", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_notes", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "notes", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_locked", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "locked", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand = New Global.System.Data.SqlClient.SqlCommand()
             Me._adapter.InsertCommand.Connection = Me.Connection
-            Me._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[filecheck] ([username], [idFiledata], [date], [opened]) VALUES"& _ 
-                " (@username, @idFiledata, @date, @opened);"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT idFilecheck, username, idFile"& _ 
-                "data, date, opened FROM filecheck WHERE (idFilecheck = SCOPE_IDENTITY())"
+            Me._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[assignment] ([teacher], [class], [title], [setDate], [deadline"& _ 
+                "Date], [del], [notes], [locked]) VALUES (@teacher, @class, @title, @setDate, @de"& _ 
+                "adlineDate, @del, @notes, @locked);"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT idAssignment, teacher, class, title,"& _ 
+                " setDate, deadlineDate, del, notes, locked FROM assignment WHERE (idAssignment ="& _ 
+                " SCOPE_IDENTITY())"
             Me._adapter.InsertCommand.CommandType = Global.System.Data.CommandType.Text
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@username", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "username", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@idFiledata", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "idFiledata", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@date", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "date", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@opened", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "opened", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@teacher", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "teacher", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@class", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "class", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@title", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "title", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@setDate", Global.System.Data.SqlDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, 0, 0, "setDate", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@deadlineDate", Global.System.Data.SqlDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, 0, 0, "deadlineDate", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@del", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "del", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@notes", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "notes", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@locked", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "locked", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand = New Global.System.Data.SqlClient.SqlCommand()
             Me._adapter.UpdateCommand.Connection = Me.Connection
-            Me._adapter.UpdateCommand.CommandText = "UPDATE [dbo].[filecheck] SET [username] = @username, [idFiledata] = @idFiledata, "& _ 
-                "[date] = @date, [opened] = @opened WHERE (([idFilecheck] = @Original_idFilecheck"& _ 
-                ") AND ([username] = @Original_username) AND ([idFiledata] = @Original_idFiledata"& _ 
-                ") AND ([date] = @Original_date) AND ([opened] = @Original_opened));"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT idFi"& _ 
-                "lecheck, username, idFiledata, date, opened FROM filecheck WHERE (idFilecheck = "& _ 
-                "@idFilecheck)"
+            Me._adapter.UpdateCommand.CommandText = "UPDATE [dbo].[assignment] SET [teacher] = @teacher, [class] = @class, [title] = @"& _ 
+                "title, [setDate] = @setDate, [deadlineDate] = @deadlineDate, [del] = @del, [note"& _ 
+                "s] = @notes, [locked] = @locked WHERE (([idAssignment] = @Original_idAssignment)"& _ 
+                " AND ([teacher] = @Original_teacher) AND ([class] = @Original_class) AND ([title"& _ 
+                "] = @Original_title) AND ([setDate] = @Original_setDate) AND ([deadlineDate] = @"& _ 
+                "Original_deadlineDate) AND ([del] = @Original_del) AND ((@IsNull_notes = 1 AND ["& _ 
+                "notes] IS NULL) OR ([notes] = @Original_notes)) AND ([locked] = @Original_locked"& _ 
+                "));"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT idAssignment, teacher, class, title, setDate, deadlineDate, del, not"& _ 
+                "es, locked FROM assignment WHERE (idAssignment = @idAssignment)"
             Me._adapter.UpdateCommand.CommandType = Global.System.Data.CommandType.Text
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@username", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "username", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@idFiledata", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "idFiledata", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@date", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "date", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@opened", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "opened", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_idFilecheck", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "idFilecheck", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_username", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "username", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_idFiledata", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "idFiledata", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_date", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "date", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_opened", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "opened", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@idFilecheck", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "idFilecheck", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@teacher", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "teacher", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@class", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "class", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@title", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "title", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@setDate", Global.System.Data.SqlDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, 0, 0, "setDate", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@deadlineDate", Global.System.Data.SqlDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, 0, 0, "deadlineDate", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@del", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "del", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@notes", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "notes", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@locked", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "locked", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_idAssignment", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "idAssignment", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_teacher", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "teacher", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_class", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "class", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_title", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "title", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_setDate", Global.System.Data.SqlDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, 0, 0, "setDate", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_deadlineDate", Global.System.Data.SqlDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, 0, 0, "deadlineDate", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_del", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "del", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_notes", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "notes", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_notes", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "notes", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_locked", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "locked", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@idAssignment", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "idAssignment", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -3223,18 +2286,25 @@ Namespace fileportalDataSet1TableAdapters
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Private Sub InitCommandCollection()
-            Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(0) {}
+            Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(1) {}
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT idFilecheck, username, idFiledata, date, opened FROM dbo.filecheck"
+            Me._commandCollection(0).CommandText = "SELECT idAssignment, teacher, class, title, setDate, deadlineDate, del, notes, lo"& _ 
+                "cked FROM dbo.assignment"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(1) = New Global.System.Data.SqlClient.SqlCommand()
+            Me._commandCollection(1).Connection = Me.Connection
+            Me._commandCollection(1).CommandText = "SELECT        idAssignment, teacher, class, title, setDate, deadlineDate, del, no"& _ 
+                "tes, locked"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            assignment"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (idAssignment = @aid)"
+            Me._commandCollection(1).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@aid", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "idAssignment", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, true)>  _
-        Public Overloads Overridable Function Fill(ByVal dataTable As fileportalDataSet1.filecheckDataTable) As Integer
+        Public Overloads Overridable Function Fill(ByVal dataTable As fileportalDataSet1.assignmentDataTable) As Integer
             Me.Adapter.SelectCommand = Me.CommandCollection(0)
             If (Me.ClearBeforeFill = true) Then
                 dataTable.Clear
@@ -3247,9 +2317,21 @@ Namespace fileportalDataSet1TableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], true)>  _
-        Public Overloads Overridable Function GetData() As fileportalDataSet1.filecheckDataTable
+        Public Overloads Overridable Function GetData() As fileportalDataSet1.assignmentDataTable
             Me.Adapter.SelectCommand = Me.CommandCollection(0)
-            Dim dataTable As fileportalDataSet1.filecheckDataTable = New fileportalDataSet1.filecheckDataTable()
+            Dim dataTable As fileportalDataSet1.assignmentDataTable = New fileportalDataSet1.assignmentDataTable()
+            Me.Adapter.Fill(dataTable)
+            Return dataTable
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], false)>  _
+        Public Overloads Overridable Function GetAssignmentByID(ByVal aid As Integer) As fileportalDataSet1.assignmentDataTable
+            Me.Adapter.SelectCommand = Me.CommandCollection(1)
+            Me.Adapter.SelectCommand.Parameters(0).Value = CType(aid,Integer)
+            Dim dataTable As fileportalDataSet1.assignmentDataTable = New fileportalDataSet1.assignmentDataTable()
             Me.Adapter.Fill(dataTable)
             Return dataTable
         End Function
@@ -3257,7 +2339,7 @@ Namespace fileportalDataSet1TableAdapters
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function Update(ByVal dataTable As fileportalDataSet1.filecheckDataTable) As Integer
+        Public Overloads Overridable Function Update(ByVal dataTable As fileportalDataSet1.assignmentDataTable) As Integer
             Return Me.Adapter.Update(dataTable)
         End Function
         
@@ -3265,7 +2347,7 @@ Namespace fileportalDataSet1TableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
         Public Overloads Overridable Function Update(ByVal dataSet As fileportalDataSet1) As Integer
-            Return Me.Adapter.Update(dataSet, "filecheck")
+            Return Me.Adapter.Update(dataSet, "assignment")
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -3286,16 +2368,34 @@ Namespace fileportalDataSet1TableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, true)>  _
-        Public Overloads Overridable Function Delete(ByVal Original_idFilecheck As Integer, ByVal Original_username As String, ByVal Original_idFiledata As Integer, ByVal Original_date As Date, ByVal Original_opened As Boolean) As Integer
-            Me.Adapter.DeleteCommand.Parameters(0).Value = CType(Original_idFilecheck,Integer)
-            If (Original_username Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_username")
+        Public Overloads Overridable Function Delete(ByVal Original_idAssignment As Integer, ByVal Original_teacher As String, ByVal Original_class As String, ByVal Original_title As String, ByVal Original_setDate As Date, ByVal Original_deadlineDate As Date, ByVal Original_del As Boolean, ByVal Original_notes As String, ByVal Original_locked As Boolean) As Integer
+            Me.Adapter.DeleteCommand.Parameters(0).Value = CType(Original_idAssignment,Integer)
+            If (Original_teacher Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("Original_teacher")
             Else
-                Me.Adapter.DeleteCommand.Parameters(1).Value = CType(Original_username,String)
+                Me.Adapter.DeleteCommand.Parameters(1).Value = CType(Original_teacher,String)
             End If
-            Me.Adapter.DeleteCommand.Parameters(2).Value = CType(Original_idFiledata,Integer)
-            Me.Adapter.DeleteCommand.Parameters(3).Value = CType(Original_date,Date)
-            Me.Adapter.DeleteCommand.Parameters(4).Value = CType(Original_opened,Boolean)
+            If (Original_class Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("Original_class")
+            Else
+                Me.Adapter.DeleteCommand.Parameters(2).Value = CType(Original_class,String)
+            End If
+            If (Original_title Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("Original_title")
+            Else
+                Me.Adapter.DeleteCommand.Parameters(3).Value = CType(Original_title,String)
+            End If
+            Me.Adapter.DeleteCommand.Parameters(4).Value = CType(Original_setDate,Date)
+            Me.Adapter.DeleteCommand.Parameters(5).Value = CType(Original_deadlineDate,Date)
+            Me.Adapter.DeleteCommand.Parameters(6).Value = CType(Original_del,Boolean)
+            If (Original_notes Is Nothing) Then
+                Me.Adapter.DeleteCommand.Parameters(7).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(8).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.DeleteCommand.Parameters(7).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(8).Value = CType(Original_notes,String)
+            End If
+            Me.Adapter.DeleteCommand.Parameters(9).Value = CType(Original_locked,Boolean)
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.DeleteCommand.Connection.State
             If ((Me.Adapter.DeleteCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -3315,15 +2415,31 @@ Namespace fileportalDataSet1TableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, true)>  _
-        Public Overloads Overridable Function Insert(ByVal username As String, ByVal idFiledata As Integer, ByVal _date As Date, ByVal opened As Boolean) As Integer
-            If (username Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("username")
+        Public Overloads Overridable Function Insert(ByVal teacher As String, ByVal _class As String, ByVal title As String, ByVal setDate As Date, ByVal deadlineDate As Date, ByVal del As Boolean, ByVal notes As String, ByVal locked As Boolean) As Integer
+            If (teacher Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("teacher")
             Else
-                Me.Adapter.InsertCommand.Parameters(0).Value = CType(username,String)
+                Me.Adapter.InsertCommand.Parameters(0).Value = CType(teacher,String)
             End If
-            Me.Adapter.InsertCommand.Parameters(1).Value = CType(idFiledata,Integer)
-            Me.Adapter.InsertCommand.Parameters(2).Value = CType(_date,Date)
-            Me.Adapter.InsertCommand.Parameters(3).Value = CType(opened,Boolean)
+            If (_class Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("_class")
+            Else
+                Me.Adapter.InsertCommand.Parameters(1).Value = CType(_class,String)
+            End If
+            If (title Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("title")
+            Else
+                Me.Adapter.InsertCommand.Parameters(2).Value = CType(title,String)
+            End If
+            Me.Adapter.InsertCommand.Parameters(3).Value = CType(setDate,Date)
+            Me.Adapter.InsertCommand.Parameters(4).Value = CType(deadlineDate,Date)
+            Me.Adapter.InsertCommand.Parameters(5).Value = CType(del,Boolean)
+            If (notes Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(6).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(6).Value = CType(notes,String)
+            End If
+            Me.Adapter.InsertCommand.Parameters(7).Value = CType(locked,Boolean)
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.InsertCommand.Connection.State
             If ((Me.Adapter.InsertCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -3343,25 +2459,77 @@ Namespace fileportalDataSet1TableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
-        Public Overloads Overridable Function Update(ByVal username As String, ByVal idFiledata As Integer, ByVal _date As Date, ByVal opened As Boolean, ByVal Original_idFilecheck As Integer, ByVal Original_username As String, ByVal Original_idFiledata As Integer, ByVal Original_date As Date, ByVal Original_opened As Boolean, ByVal idFilecheck As Integer) As Integer
-            If (username Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("username")
+        Public Overloads Overridable Function Update( _
+                    ByVal teacher As String,  _
+                    ByVal _class As String,  _
+                    ByVal title As String,  _
+                    ByVal setDate As Date,  _
+                    ByVal deadlineDate As Date,  _
+                    ByVal del As Boolean,  _
+                    ByVal notes As String,  _
+                    ByVal locked As Boolean,  _
+                    ByVal Original_idAssignment As Integer,  _
+                    ByVal Original_teacher As String,  _
+                    ByVal Original_class As String,  _
+                    ByVal Original_title As String,  _
+                    ByVal Original_setDate As Date,  _
+                    ByVal Original_deadlineDate As Date,  _
+                    ByVal Original_del As Boolean,  _
+                    ByVal Original_notes As String,  _
+                    ByVal Original_locked As Boolean,  _
+                    ByVal idAssignment As Integer) As Integer
+            If (teacher Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("teacher")
             Else
-                Me.Adapter.UpdateCommand.Parameters(0).Value = CType(username,String)
+                Me.Adapter.UpdateCommand.Parameters(0).Value = CType(teacher,String)
             End If
-            Me.Adapter.UpdateCommand.Parameters(1).Value = CType(idFiledata,Integer)
-            Me.Adapter.UpdateCommand.Parameters(2).Value = CType(_date,Date)
-            Me.Adapter.UpdateCommand.Parameters(3).Value = CType(opened,Boolean)
-            Me.Adapter.UpdateCommand.Parameters(4).Value = CType(Original_idFilecheck,Integer)
-            If (Original_username Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_username")
+            If (_class Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("_class")
             Else
-                Me.Adapter.UpdateCommand.Parameters(5).Value = CType(Original_username,String)
+                Me.Adapter.UpdateCommand.Parameters(1).Value = CType(_class,String)
             End If
-            Me.Adapter.UpdateCommand.Parameters(6).Value = CType(Original_idFiledata,Integer)
-            Me.Adapter.UpdateCommand.Parameters(7).Value = CType(Original_date,Date)
-            Me.Adapter.UpdateCommand.Parameters(8).Value = CType(Original_opened,Boolean)
-            Me.Adapter.UpdateCommand.Parameters(9).Value = CType(idFilecheck,Integer)
+            If (title Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("title")
+            Else
+                Me.Adapter.UpdateCommand.Parameters(2).Value = CType(title,String)
+            End If
+            Me.Adapter.UpdateCommand.Parameters(3).Value = CType(setDate,Date)
+            Me.Adapter.UpdateCommand.Parameters(4).Value = CType(deadlineDate,Date)
+            Me.Adapter.UpdateCommand.Parameters(5).Value = CType(del,Boolean)
+            If (notes Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(6).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(6).Value = CType(notes,String)
+            End If
+            Me.Adapter.UpdateCommand.Parameters(7).Value = CType(locked,Boolean)
+            Me.Adapter.UpdateCommand.Parameters(8).Value = CType(Original_idAssignment,Integer)
+            If (Original_teacher Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("Original_teacher")
+            Else
+                Me.Adapter.UpdateCommand.Parameters(9).Value = CType(Original_teacher,String)
+            End If
+            If (Original_class Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("Original_class")
+            Else
+                Me.Adapter.UpdateCommand.Parameters(10).Value = CType(Original_class,String)
+            End If
+            If (Original_title Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("Original_title")
+            Else
+                Me.Adapter.UpdateCommand.Parameters(11).Value = CType(Original_title,String)
+            End If
+            Me.Adapter.UpdateCommand.Parameters(12).Value = CType(Original_setDate,Date)
+            Me.Adapter.UpdateCommand.Parameters(13).Value = CType(Original_deadlineDate,Date)
+            Me.Adapter.UpdateCommand.Parameters(14).Value = CType(Original_del,Boolean)
+            If (Original_notes Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(15).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(16).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(15).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(16).Value = CType(Original_notes,String)
+            End If
+            Me.Adapter.UpdateCommand.Parameters(17).Value = CType(Original_locked,Boolean)
+            Me.Adapter.UpdateCommand.Parameters(18).Value = CType(idAssignment,Integer)
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.UpdateCommand.Connection.State
             If ((Me.Adapter.UpdateCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -3381,8 +2549,25 @@ Namespace fileportalDataSet1TableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
-        Public Overloads Overridable Function Update(ByVal username As String, ByVal idFiledata As Integer, ByVal _date As Date, ByVal opened As Boolean, ByVal Original_idFilecheck As Integer, ByVal Original_username As String, ByVal Original_idFiledata As Integer, ByVal Original_date As Date, ByVal Original_opened As Boolean) As Integer
-            Return Me.Update(username, idFiledata, _date, opened, Original_idFilecheck, Original_username, Original_idFiledata, Original_date, Original_opened, Original_idFilecheck)
+        Public Overloads Overridable Function Update( _
+                    ByVal teacher As String,  _
+                    ByVal _class As String,  _
+                    ByVal title As String,  _
+                    ByVal setDate As Date,  _
+                    ByVal deadlineDate As Date,  _
+                    ByVal del As Boolean,  _
+                    ByVal notes As String,  _
+                    ByVal locked As Boolean,  _
+                    ByVal Original_idAssignment As Integer,  _
+                    ByVal Original_teacher As String,  _
+                    ByVal Original_class As String,  _
+                    ByVal Original_title As String,  _
+                    ByVal Original_setDate As Date,  _
+                    ByVal Original_deadlineDate As Date,  _
+                    ByVal Original_del As Boolean,  _
+                    ByVal Original_notes As String,  _
+                    ByVal Original_locked As Boolean) As Integer
+            Return Me.Update(teacher, _class, title, setDate, deadlineDate, del, notes, locked, Original_idAssignment, Original_teacher, Original_class, Original_title, Original_setDate, Original_deadlineDate, Original_del, Original_notes, Original_locked, Original_idAssignment)
         End Function
     End Class
     
@@ -3399,11 +2584,9 @@ Namespace fileportalDataSet1TableAdapters
         
         Private _updateOrder As UpdateOrderOption
         
-        Private _assignmentTableAdapter As assignmentTableAdapter
-        
         Private _filedataTableAdapter As filedataTableAdapter
         
-        Private _filecheckTableAdapter As filecheckTableAdapter
+        Private _assignmentTableAdapter As assignmentTableAdapter
         
         Private _backupDataSetBeforeUpdate As Boolean
         
@@ -3417,20 +2600,6 @@ Namespace fileportalDataSet1TableAdapters
             End Get
             Set
                 Me._updateOrder = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso"& _ 
-            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3"& _ 
-            "a", "System.Drawing.Design.UITypeEditor")>  _
-        Public Property assignmentTableAdapter() As assignmentTableAdapter
-            Get
-                Return Me._assignmentTableAdapter
-            End Get
-            Set
-                Me._assignmentTableAdapter = value
             End Set
         End Property
         
@@ -3453,12 +2622,12 @@ Namespace fileportalDataSet1TableAdapters
          Global.System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso"& _ 
             "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3"& _ 
             "a", "System.Drawing.Design.UITypeEditor")>  _
-        Public Property filecheckTableAdapter() As filecheckTableAdapter
+        Public Property assignmentTableAdapter() As assignmentTableAdapter
             Get
-                Return Me._filecheckTableAdapter
+                Return Me._assignmentTableAdapter
             End Get
             Set
-                Me._filecheckTableAdapter = value
+                Me._assignmentTableAdapter = value
             End Set
         End Property
         
@@ -3481,17 +2650,13 @@ Namespace fileportalDataSet1TableAdapters
                 If (Not (Me._connection) Is Nothing) Then
                     Return Me._connection
                 End If
-                If ((Not (Me._assignmentTableAdapter) Is Nothing)  _
-                            AndAlso (Not (Me._assignmentTableAdapter.Connection) Is Nothing)) Then
-                    Return Me._assignmentTableAdapter.Connection
-                End If
                 If ((Not (Me._filedataTableAdapter) Is Nothing)  _
                             AndAlso (Not (Me._filedataTableAdapter.Connection) Is Nothing)) Then
                     Return Me._filedataTableAdapter.Connection
                 End If
-                If ((Not (Me._filecheckTableAdapter) Is Nothing)  _
-                            AndAlso (Not (Me._filecheckTableAdapter.Connection) Is Nothing)) Then
-                    Return Me._filecheckTableAdapter.Connection
+                If ((Not (Me._assignmentTableAdapter) Is Nothing)  _
+                            AndAlso (Not (Me._assignmentTableAdapter.Connection) Is Nothing)) Then
+                    Return Me._assignmentTableAdapter.Connection
                 End If
                 Return Nothing
             End Get
@@ -3506,13 +2671,10 @@ Namespace fileportalDataSet1TableAdapters
         Public ReadOnly Property TableAdapterInstanceCount() As Integer
             Get
                 Dim count As Integer = 0
-                If (Not (Me._assignmentTableAdapter) Is Nothing) Then
-                    count = (count + 1)
-                End If
                 If (Not (Me._filedataTableAdapter) Is Nothing) Then
                     count = (count + 1)
                 End If
-                If (Not (Me._filecheckTableAdapter) Is Nothing) Then
+                If (Not (Me._assignmentTableAdapter) Is Nothing) Then
                     count = (count + 1)
                 End If
                 Return count
@@ -3544,15 +2706,6 @@ Namespace fileportalDataSet1TableAdapters
                     allChangedRows.AddRange(updatedRows)
                 End If
             End If
-            If (Not (Me._filecheckTableAdapter) Is Nothing) Then
-                Dim updatedRows() As Global.System.Data.DataRow = dataSet.filecheck.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
-                updatedRows = Me.GetRealUpdatedRows(updatedRows, allAddedRows)
-                If ((Not (updatedRows) Is Nothing)  _
-                            AndAlso (0 < updatedRows.Length)) Then
-                    result = (result + Me._filecheckTableAdapter.Update(updatedRows))
-                    allChangedRows.AddRange(updatedRows)
-                End If
-            End If
             Return result
         End Function
         
@@ -3579,14 +2732,6 @@ Namespace fileportalDataSet1TableAdapters
                     allAddedRows.AddRange(addedRows)
                 End If
             End If
-            If (Not (Me._filecheckTableAdapter) Is Nothing) Then
-                Dim addedRows() As Global.System.Data.DataRow = dataSet.filecheck.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
-                If ((Not (addedRows) Is Nothing)  _
-                            AndAlso (0 < addedRows.Length)) Then
-                    result = (result + Me._filecheckTableAdapter.Update(addedRows))
-                    allAddedRows.AddRange(addedRows)
-                End If
-            End If
             Return result
         End Function
         
@@ -3597,14 +2742,6 @@ Namespace fileportalDataSet1TableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Private Function UpdateDeletedRows(ByVal dataSet As fileportalDataSet1, ByVal allChangedRows As Global.System.Collections.Generic.List(Of Global.System.Data.DataRow)) As Integer
             Dim result As Integer = 0
-            If (Not (Me._filecheckTableAdapter) Is Nothing) Then
-                Dim deletedRows() As Global.System.Data.DataRow = dataSet.filecheck.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
-                If ((Not (deletedRows) Is Nothing)  _
-                            AndAlso (0 < deletedRows.Length)) Then
-                    result = (result + Me._filecheckTableAdapter.Update(deletedRows))
-                    allChangedRows.AddRange(deletedRows)
-                End If
-            End If
             If (Not (Me._filedataTableAdapter) Is Nothing) Then
                 Dim deletedRows() As Global.System.Data.DataRow = dataSet.filedata.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
                 If ((Not (deletedRows) Is Nothing)  _
@@ -3662,18 +2799,13 @@ Namespace fileportalDataSet1TableAdapters
             If (dataSet.HasChanges = false) Then
                 Return 0
             End If
-            If ((Not (Me._assignmentTableAdapter) Is Nothing)  _
-                        AndAlso (Me.MatchTableAdapterConnection(Me._assignmentTableAdapter.Connection) = false)) Then
-                Throw New Global.System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s"& _ 
-                        "tring.")
-            End If
             If ((Not (Me._filedataTableAdapter) Is Nothing)  _
                         AndAlso (Me.MatchTableAdapterConnection(Me._filedataTableAdapter.Connection) = false)) Then
                 Throw New Global.System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s"& _ 
                         "tring.")
             End If
-            If ((Not (Me._filecheckTableAdapter) Is Nothing)  _
-                        AndAlso (Me.MatchTableAdapterConnection(Me._filecheckTableAdapter.Connection) = false)) Then
+            If ((Not (Me._assignmentTableAdapter) Is Nothing)  _
+                        AndAlso (Me.MatchTableAdapterConnection(Me._assignmentTableAdapter.Connection) = false)) Then
                 Throw New Global.System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s"& _ 
                         "tring.")
             End If
@@ -3709,15 +2841,6 @@ Namespace fileportalDataSet1TableAdapters
             Try 
                 '---- Prepare for update -----------
                 '
-                If (Not (Me._assignmentTableAdapter) Is Nothing) Then
-                    revertConnections.Add(Me._assignmentTableAdapter, Me._assignmentTableAdapter.Connection)
-                    Me._assignmentTableAdapter.Connection = CType(workConnection,Global.System.Data.SqlClient.SqlConnection)
-                    Me._assignmentTableAdapter.Transaction = CType(workTransaction,Global.System.Data.SqlClient.SqlTransaction)
-                    If Me._assignmentTableAdapter.Adapter.AcceptChangesDuringUpdate Then
-                        Me._assignmentTableAdapter.Adapter.AcceptChangesDuringUpdate = false
-                        adaptersWithAcceptChangesDuringUpdate.Add(Me._assignmentTableAdapter.Adapter)
-                    End If
-                End If
                 If (Not (Me._filedataTableAdapter) Is Nothing) Then
                     revertConnections.Add(Me._filedataTableAdapter, Me._filedataTableAdapter.Connection)
                     Me._filedataTableAdapter.Connection = CType(workConnection,Global.System.Data.SqlClient.SqlConnection)
@@ -3727,13 +2850,13 @@ Namespace fileportalDataSet1TableAdapters
                         adaptersWithAcceptChangesDuringUpdate.Add(Me._filedataTableAdapter.Adapter)
                     End If
                 End If
-                If (Not (Me._filecheckTableAdapter) Is Nothing) Then
-                    revertConnections.Add(Me._filecheckTableAdapter, Me._filecheckTableAdapter.Connection)
-                    Me._filecheckTableAdapter.Connection = CType(workConnection,Global.System.Data.SqlClient.SqlConnection)
-                    Me._filecheckTableAdapter.Transaction = CType(workTransaction,Global.System.Data.SqlClient.SqlTransaction)
-                    If Me._filecheckTableAdapter.Adapter.AcceptChangesDuringUpdate Then
-                        Me._filecheckTableAdapter.Adapter.AcceptChangesDuringUpdate = false
-                        adaptersWithAcceptChangesDuringUpdate.Add(Me._filecheckTableAdapter.Adapter)
+                If (Not (Me._assignmentTableAdapter) Is Nothing) Then
+                    revertConnections.Add(Me._assignmentTableAdapter, Me._assignmentTableAdapter.Connection)
+                    Me._assignmentTableAdapter.Connection = CType(workConnection,Global.System.Data.SqlClient.SqlConnection)
+                    Me._assignmentTableAdapter.Transaction = CType(workTransaction,Global.System.Data.SqlClient.SqlTransaction)
+                    If Me._assignmentTableAdapter.Adapter.AcceptChangesDuringUpdate Then
+                        Me._assignmentTableAdapter.Adapter.AcceptChangesDuringUpdate = false
+                        adaptersWithAcceptChangesDuringUpdate.Add(Me._assignmentTableAdapter.Adapter)
                     End If
                 End If
                 '
@@ -3796,17 +2919,13 @@ Namespace fileportalDataSet1TableAdapters
                 If workConnOpened Then
                     workConnection.Close
                 End If
-                If (Not (Me._assignmentTableAdapter) Is Nothing) Then
-                    Me._assignmentTableAdapter.Connection = CType(revertConnections(Me._assignmentTableAdapter),Global.System.Data.SqlClient.SqlConnection)
-                    Me._assignmentTableAdapter.Transaction = Nothing
-                End If
                 If (Not (Me._filedataTableAdapter) Is Nothing) Then
                     Me._filedataTableAdapter.Connection = CType(revertConnections(Me._filedataTableAdapter),Global.System.Data.SqlClient.SqlConnection)
                     Me._filedataTableAdapter.Transaction = Nothing
                 End If
-                If (Not (Me._filecheckTableAdapter) Is Nothing) Then
-                    Me._filecheckTableAdapter.Connection = CType(revertConnections(Me._filecheckTableAdapter),Global.System.Data.SqlClient.SqlConnection)
-                    Me._filecheckTableAdapter.Transaction = Nothing
+                If (Not (Me._assignmentTableAdapter) Is Nothing) Then
+                    Me._assignmentTableAdapter.Connection = CType(revertConnections(Me._assignmentTableAdapter),Global.System.Data.SqlClient.SqlConnection)
+                    Me._assignmentTableAdapter.Transaction = Nothing
                 End If
                 If (0 < adaptersWithAcceptChangesDuringUpdate.Count) Then
                     Dim adapters((adaptersWithAcceptChangesDuringUpdate.Count) - 1) As Global.System.Data.Common.DataAdapter
