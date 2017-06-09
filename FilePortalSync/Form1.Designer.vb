@@ -39,15 +39,6 @@ Partial Class Form1
         Me.FiledataTableAdapter = New FilePortalSync.fileportalDataSet1TableAdapters.filedataTableAdapter()
         Me.TableAdapterManager = New FilePortalSync.fileportalDataSet1TableAdapters.TableAdapterManager()
         Me.AssignmentTableAdapter = New FilePortalSync.fileportalDataSet1TableAdapters.assignmentTableAdapter()
-        Me.IdAssignmentDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.TeacherDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ClassDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.TitleDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.SetDateDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DeadlineDateDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DelDataGridViewCheckBoxColumn = New System.Windows.Forms.DataGridViewCheckBoxColumn()
-        Me.NotesDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.LockedDataGridViewCheckBoxColumn = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         CType(Me.OutputData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.AssignmentBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -64,10 +55,7 @@ Partial Class Form1
         '
         Me.OutputData.AllowUserToAddRows = False
         Me.OutputData.AllowUserToDeleteRows = False
-        Me.OutputData.AutoGenerateColumns = False
         Me.OutputData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.OutputData.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IdAssignmentDataGridViewTextBoxColumn, Me.TeacherDataGridViewTextBoxColumn, Me.ClassDataGridViewTextBoxColumn, Me.TitleDataGridViewTextBoxColumn, Me.SetDateDataGridViewTextBoxColumn, Me.DeadlineDateDataGridViewTextBoxColumn, Me.DelDataGridViewCheckBoxColumn, Me.NotesDataGridViewTextBoxColumn, Me.LockedDataGridViewCheckBoxColumn})
-        Me.OutputData.DataSource = Me.AssignmentBindingSource
         Me.OutputData.Dock = System.Windows.Forms.DockStyle.Fill
         Me.OutputData.Location = New System.Drawing.Point(0, 24)
         Me.OutputData.Name = "OutputData"
@@ -161,69 +149,6 @@ Partial Class Form1
         '
         Me.AssignmentTableAdapter.ClearBeforeFill = True
         '
-        'IdAssignmentDataGridViewTextBoxColumn
-        '
-        Me.IdAssignmentDataGridViewTextBoxColumn.DataPropertyName = "idAssignment"
-        Me.IdAssignmentDataGridViewTextBoxColumn.HeaderText = "idAssignment"
-        Me.IdAssignmentDataGridViewTextBoxColumn.Name = "IdAssignmentDataGridViewTextBoxColumn"
-        Me.IdAssignmentDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'TeacherDataGridViewTextBoxColumn
-        '
-        Me.TeacherDataGridViewTextBoxColumn.DataPropertyName = "teacher"
-        Me.TeacherDataGridViewTextBoxColumn.HeaderText = "teacher"
-        Me.TeacherDataGridViewTextBoxColumn.Name = "TeacherDataGridViewTextBoxColumn"
-        Me.TeacherDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'ClassDataGridViewTextBoxColumn
-        '
-        Me.ClassDataGridViewTextBoxColumn.DataPropertyName = "class"
-        Me.ClassDataGridViewTextBoxColumn.HeaderText = "class"
-        Me.ClassDataGridViewTextBoxColumn.Name = "ClassDataGridViewTextBoxColumn"
-        Me.ClassDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'TitleDataGridViewTextBoxColumn
-        '
-        Me.TitleDataGridViewTextBoxColumn.DataPropertyName = "title"
-        Me.TitleDataGridViewTextBoxColumn.HeaderText = "title"
-        Me.TitleDataGridViewTextBoxColumn.Name = "TitleDataGridViewTextBoxColumn"
-        Me.TitleDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'SetDateDataGridViewTextBoxColumn
-        '
-        Me.SetDateDataGridViewTextBoxColumn.DataPropertyName = "setDate"
-        Me.SetDateDataGridViewTextBoxColumn.HeaderText = "setDate"
-        Me.SetDateDataGridViewTextBoxColumn.Name = "SetDateDataGridViewTextBoxColumn"
-        Me.SetDateDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'DeadlineDateDataGridViewTextBoxColumn
-        '
-        Me.DeadlineDateDataGridViewTextBoxColumn.DataPropertyName = "deadlineDate"
-        Me.DeadlineDateDataGridViewTextBoxColumn.HeaderText = "deadlineDate"
-        Me.DeadlineDateDataGridViewTextBoxColumn.Name = "DeadlineDateDataGridViewTextBoxColumn"
-        Me.DeadlineDateDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'DelDataGridViewCheckBoxColumn
-        '
-        Me.DelDataGridViewCheckBoxColumn.DataPropertyName = "del"
-        Me.DelDataGridViewCheckBoxColumn.HeaderText = "del"
-        Me.DelDataGridViewCheckBoxColumn.Name = "DelDataGridViewCheckBoxColumn"
-        Me.DelDataGridViewCheckBoxColumn.ReadOnly = True
-        '
-        'NotesDataGridViewTextBoxColumn
-        '
-        Me.NotesDataGridViewTextBoxColumn.DataPropertyName = "notes"
-        Me.NotesDataGridViewTextBoxColumn.HeaderText = "notes"
-        Me.NotesDataGridViewTextBoxColumn.Name = "NotesDataGridViewTextBoxColumn"
-        Me.NotesDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'LockedDataGridViewCheckBoxColumn
-        '
-        Me.LockedDataGridViewCheckBoxColumn.DataPropertyName = "locked"
-        Me.LockedDataGridViewCheckBoxColumn.HeaderText = "locked"
-        Me.LockedDataGridViewCheckBoxColumn.Name = "LockedDataGridViewCheckBoxColumn"
-        Me.LockedDataGridViewCheckBoxColumn.ReadOnly = True
-        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -260,14 +185,5 @@ Partial Class Form1
     Friend WithEvents EditDefaultsToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents StartToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents EnterPasswordToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents IdAssignmentDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
-    Friend WithEvents TeacherDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
-    Friend WithEvents ClassDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
-    Friend WithEvents TitleDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
-    Friend WithEvents SetDateDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
-    Friend WithEvents DeadlineDateDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
-    Friend WithEvents DelDataGridViewCheckBoxColumn As DataGridViewCheckBoxColumn
-    Friend WithEvents NotesDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
-    Friend WithEvents LockedDataGridViewCheckBoxColumn As DataGridViewCheckBoxColumn
     Friend WithEvents AssignmentTableAdapter As fileportalDataSet1TableAdapters.assignmentTableAdapter
 End Class
