@@ -220,13 +220,20 @@ Public Class Form1
         newDetailRow("Operation") = "Download"
 
         Dim fs As Stream = FileOperations.loadFromSP(taskLib.SharePointFile, taskLib.URL, taskLib.Share, taskLib.Username, taskLib.Password)
+
         If IsNothing(fs) Then
             decThread()
             newDetailRow("Result") = "Failed"
             displayTable.Rows.Add(newDetailRow)
+            SyncLock Me
+                'Setting both these to true indicated failure to Kirts PHP Page.
+                FiledataTableAdapter.setDownloadFlag(True, taskLib.id)
+                FiledataTableAdapter.setDownloadReadyFlag(True, taskLib.id)
+            End SyncLock
             updateScreen()
             Return
         End If
+
         Using nfs As New FileStream(taskLib.LocalShare & taskLib.SharePointFile, FileMode.Create)
             fs.CopyTo(nfs)
         End Using
