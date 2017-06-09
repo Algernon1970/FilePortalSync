@@ -227,7 +227,7 @@ Public Class Form1
             updateScreen()
             Return
         End If
-        Using nfs As New FileStream("C:\temp\" & taskLib.SharePointFile, FileMode.Create)
+        Using nfs As New FileStream(taskLib.LocalShare & taskLib.SharePointFile, FileMode.Create)
             fs.CopyTo(nfs)
         End Using
 
@@ -265,6 +265,7 @@ Public Class Form1
             taskLib.Password = Password
             taskLib.URL = library.URL
             taskLib.Share = library.Share
+            taskLib.LocalShare = library.LocalShare
             taskLib.id = id
             'spawn thread to do copy
             myFileWorker.Post(taskLib)
