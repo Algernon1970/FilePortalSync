@@ -226,9 +226,10 @@ Public Class Form1
             newDetailRow("Result") = "Failed"
             displayTable.Rows.Add(newDetailRow)
             SyncLock Me
-                'Setting both these to true indicated failure to Kirts PHP Page.
-                FiledataTableAdapter.setDownloadFlag(True, taskLib.id)
-                FiledataTableAdapter.setDownloadReadyFlag(True, taskLib.id)
+                'failure to Kirts PHP Page.
+                FiledataTableAdapter.setDownloadFlag(False, taskLib.id)
+                FiledataTableAdapter.setDownloadReadyFlag(False, taskLib.id)
+                FiledataTableAdapter.SetError(True, taskLib.id)
             End SyncLock
             updateScreen()
             Return
