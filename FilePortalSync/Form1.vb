@@ -161,7 +161,7 @@ Public Class Form1
             updateScreen()
             If res.ToLower.Equals("ok") Then
                 SyncLock Me
-                    FiledataTableAdapter.SetDelFlag(False, rowID)
+                    FiledataTableAdapter.SetUploaded(False, rowID)
                 End SyncLock
             Else
                 NotifyIcon1.Icon = My.Resources.portalRed
