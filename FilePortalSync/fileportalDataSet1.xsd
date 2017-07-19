@@ -142,7 +142,7 @@ WHERE        (download = 1) AND (downloadReady = 0)</CommandText>
               <DbSource ConnectionRef="fileportalConnectionString (MySettings)" DbObjectName="fileportal.dbo.filedata" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetListToDelete" GetMethodModifier="Public" GetMethodName="GetListToDelete" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetListToDelete" UserSourceName="GetListToDelete">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT audience, dateSub, del, download, downloadReady, error, filename, idAssignment, idFiledata, marked, sync, type, uploaded, data, username FROM filedata WHERE (uploaded = 1) AND (del = 1)</CommandText>
+                    <CommandText>SELECT audience, dateSub, del, download, downloadReady, error, filename, idAssignment, idFiledata, marked, sync, type, uploaded, data, username FROM filedata WHERE (uploaded = 1) AND (del = 1) and (type='file')</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
@@ -160,7 +160,7 @@ WHERE        (idFileData = @fid);</CommandText>
                   </DbCommand>
                 </UpdateCommand>
               </DbSource>
-              <DbSource ConnectionRef="fileportalConnectionString (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="setDownloadFlag" Modifier="Public" Name="setDownloadFlag" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy4" UserSourceName="setDownloadFlag">
+              <DbSource ConnectionRef="fileportalConnectionString (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="setDownloadFlag" Modifier="Public" Name="setDownloadFlag" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="setDownloadFlag">
                 <UpdateCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>UPDATE       filedata
@@ -173,7 +173,7 @@ WHERE        (idFileData = @fid);</CommandText>
                   </DbCommand>
                 </UpdateCommand>
               </DbSource>
-              <DbSource ConnectionRef="fileportalConnectionString (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="setDownloadReadyFlag" Modifier="Public" Name="setDownloadReadyFlag" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="setDownloadReadyFlag">
+              <DbSource ConnectionRef="fileportalConnectionString (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="setDownloadReadyFlag" Modifier="Public" Name="setDownloadReadyFlag" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy2" UserSourceName="setDownloadReadyFlag">
                 <UpdateCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>UPDATE       filedata
@@ -186,7 +186,7 @@ WHERE        (idFiledata = @fid)</CommandText>
                   </DbCommand>
                 </UpdateCommand>
               </DbSource>
-              <DbSource ConnectionRef="fileportalConnectionString (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="SetError" Modifier="Public" Name="SetError" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy2" UserSourceName="SetError">
+              <DbSource ConnectionRef="fileportalConnectionString (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="SetError" Modifier="Public" Name="SetError" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy3" UserSourceName="SetError">
                 <UpdateCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>UPDATE       filedata
@@ -200,16 +200,16 @@ WHERE        (idAssignment = @assID);
                   </DbCommand>
                 </UpdateCommand>
               </DbSource>
-              <DbSource ConnectionRef="fileportalConnectionString (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="SetUploaded" Modifier="Public" Name="SetUploaded" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy3" UserSourceName="SetUploaded">
+              <DbSource ConnectionRef="fileportalConnectionString (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="SetUploaded" Modifier="Public" Name="SetUploaded" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy4" UserSourceName="SetUploaded">
                 <UpdateCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>UPDATE       filedata
 SET                uploaded = @state
-WHERE        (idAssignment = @aid);  
+WHERE        (idFileData = @aid);  
 </CommandText>
                     <Parameters>
                       <Parameter AllowDbNull="false" AutogeneratedName="state" ColumnName="uploaded" DataSourceName="fileportal.dbo.filedata" DataTypeServer="bit" DbType="Boolean" Direction="Input" ParameterName="@state" Precision="0" ProviderType="Bit" Scale="0" Size="1" SourceColumn="uploaded" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="false" AutogeneratedName="aid" ColumnName="idAssignment" DataSourceName="fileportal.dbo.filedata" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@aid" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="idAssignment" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="aid" ColumnName="idFiledata" DataSourceName="fileportal.dbo.filedata" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@aid" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="idFiledata" SourceColumnNullMapping="false" SourceVersion="Original" />
                     </Parameters>
                   </DbCommand>
                 </UpdateCommand>
@@ -321,7 +321,7 @@ WHERE        (idAssignment = @aid)</CommandText>
   <xs:element name="fileportalDataSet1" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="fileportalDataSet1" msprop:Generator_UserDSName="fileportalDataSet1">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="filedata" msprop:Generator_TableClassName="filedataDataTable" msprop:Generator_TableVarName="tablefiledata" msprop:Generator_RowChangedName="filedataRowChanged" msprop:Generator_TablePropName="filedata" msprop:Generator_RowDeletingName="filedataRowDeleting" msprop:Generator_RowChangingName="filedataRowChanging" msprop:Generator_RowEvHandlerName="filedataRowChangeEventHandler" msprop:Generator_RowDeletedName="filedataRowDeleted" msprop:Generator_RowClassName="filedataRow" msprop:Generator_UserTableName="filedata" msprop:Generator_RowEvArgName="filedataRowChangeEvent">
+        <xs:element name="filedata" msprop:Generator_TableClassName="filedataDataTable" msprop:Generator_TableVarName="tablefiledata" msprop:Generator_TablePropName="filedata" msprop:Generator_RowDeletingName="filedataRowDeleting" msprop:Generator_RowChangingName="filedataRowChanging" msprop:Generator_RowEvHandlerName="filedataRowChangeEventHandler" msprop:Generator_RowDeletedName="filedataRowDeleted" msprop:Generator_UserTableName="filedata" msprop:Generator_RowChangedName="filedataRowChanged" msprop:Generator_RowEvArgName="filedataRowChangeEvent" msprop:Generator_RowClassName="filedataRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="idFiledata" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnidFiledata" msprop:Generator_ColumnPropNameInRow="idFiledata" msprop:Generator_ColumnPropNameInTable="idFiledataColumn" msprop:Generator_UserColumnName="idFiledata" type="xs:int" />
@@ -372,7 +372,7 @@ WHERE        (idAssignment = @aid)</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="assignment" msprop:Generator_TableClassName="assignmentDataTable" msprop:Generator_TableVarName="tableassignment" msprop:Generator_RowChangedName="assignmentRowChanged" msprop:Generator_TablePropName="assignment" msprop:Generator_RowDeletingName="assignmentRowDeleting" msprop:Generator_RowChangingName="assignmentRowChanging" msprop:Generator_RowEvHandlerName="assignmentRowChangeEventHandler" msprop:Generator_RowDeletedName="assignmentRowDeleted" msprop:Generator_RowClassName="assignmentRow" msprop:Generator_UserTableName="assignment" msprop:Generator_RowEvArgName="assignmentRowChangeEvent">
+        <xs:element name="assignment" msprop:Generator_TableClassName="assignmentDataTable" msprop:Generator_TableVarName="tableassignment" msprop:Generator_TablePropName="assignment" msprop:Generator_RowDeletingName="assignmentRowDeleting" msprop:Generator_RowChangingName="assignmentRowChanging" msprop:Generator_RowEvHandlerName="assignmentRowChangeEventHandler" msprop:Generator_RowDeletedName="assignmentRowDeleted" msprop:Generator_UserTableName="assignment" msprop:Generator_RowChangedName="assignmentRowChanged" msprop:Generator_RowEvArgName="assignmentRowChangeEvent" msprop:Generator_RowClassName="assignmentRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="idAssignment" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnidAssignment" msprop:Generator_ColumnPropNameInRow="idAssignment" msprop:Generator_ColumnPropNameInTable="idAssignmentColumn" msprop:Generator_UserColumnName="idAssignment" type="xs:int" />
@@ -424,7 +424,7 @@ WHERE        (idAssignment = @aid)</CommandText>
   </xs:element>
   <xs:annotation>
     <xs:appinfo>
-      <msdata:Relationship name="FK_filedata_Assignment" msdata:parent="assignment" msdata:child="filedata" msdata:parentkey="idAssignment" msdata:childkey="idAssignment" msprop:Generator_UserChildTable="filedata" msprop:Generator_ChildPropName="GetfiledataRows" msprop:Generator_UserRelationName="FK_filedata_Assignment" msprop:Generator_ParentPropName="assignmentRow" msprop:Generator_RelationVarName="relationFK_filedata_Assignment" msprop:Generator_UserParentTable="assignment" />
+      <msdata:Relationship name="FK_filedata_Assignment" msdata:parent="assignment" msdata:child="filedata" msdata:parentkey="idAssignment" msdata:childkey="idAssignment" msprop:Generator_UserChildTable="filedata" msprop:Generator_ChildPropName="GetfiledataRows" msprop:Generator_UserRelationName="FK_filedata_Assignment" msprop:Generator_RelationVarName="relationFK_filedata_Assignment" msprop:Generator_UserParentTable="assignment" msprop:Generator_ParentPropName="assignmentRow" />
     </xs:appinfo>
   </xs:annotation>
 </xs:schema>

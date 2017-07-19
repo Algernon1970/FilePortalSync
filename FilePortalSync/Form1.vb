@@ -159,11 +159,10 @@ Public Class Form1
             newDetailRow("Result") = res
             displayTable.Rows.Add(newDetailRow)
             updateScreen()
-            If res.ToLower.Equals("ok") Then
-                SyncLock Me
-                    FiledataTableAdapter.SetUploaded(False, rowID)
-                End SyncLock
-            Else
+            SyncLock Me
+                FiledataTableAdapter.SetUploaded(False, rowID)
+            End SyncLock
+            If Not res.ToLower.Equals("ok") Then
                 NotifyIcon1.Icon = My.Resources.portalRed
             End If
         Next
