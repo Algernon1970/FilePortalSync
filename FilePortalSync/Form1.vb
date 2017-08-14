@@ -30,7 +30,7 @@ Public Class Form1
         library.Share = My.Resources.ShareName
         library.LocalShare = My.Resources.LocalShare
         If File.Exists(settingsFile) Then
-            loadLibrary()
+            LoadLibrary()
         End If
 
         GetPassword()
@@ -53,21 +53,21 @@ Public Class Form1
 #End Region
 
 #Region "Thread Handleing"
-    Private Sub incThread()
+    Private Sub IncThread()
         SyncLock Me
             threadsRunning = threadsRunning + 1
-            updateScreen()
+            UpdateScreen()
         End SyncLock
     End Sub
 
-    Private Sub decThread()
+    Private Sub DecThread()
         SyncLock Me
             threadsRunning = threadsRunning - 1
-            updateScreen()
+            UpdateScreen()
         End SyncLock
     End Sub
 
-    Private Function testThread() As Boolean
+    Private Function TestThread() As Boolean
         Dim test As Boolean = True
         SyncLock Me
             If threadsRunning < 1 Then
@@ -77,8 +77,8 @@ Public Class Form1
         Return test
     End Function
 
-    Private Sub uploader_DoWork(ByVal sender As Object, ByVal e As DoWorkEventArgs)
-        incThread()
+    Private Sub Uploader_DoWork(ByVal sender As Object, ByVal e As DoWorkEventArgs)
+        IncThread()
 
         While Not cancelled
             UploadFiles()
@@ -87,17 +87,17 @@ Public Class Form1
         End While
     End Sub
 
-    Private Sub downloader_DoWork(ByVal sender As Object, ByVal e As DoWorkEventArgs)
-        incThread()
+    Private Sub Downloader_DoWork(ByVal sender As Object, ByVal e As DoWorkEventArgs)
+        IncThread()
         While Not cancelled
             DownloadFiles()
             Threading.Thread.Sleep(2000)
         End While
     End Sub
 
-    Private Sub uploader_StopWork()
-        decThread()
-        If Not testThread() Then
+    Private Sub Uploader_StopWork()
+        DecThread()
+        If Not TestThread() Then
             StartToolStripMenuItem.Text = "Start"
             StartToolStripMenuItem.BackColor = Color.LawnGreen
             EditToolStripMenuItem.Enabled = True
@@ -105,9 +105,9 @@ Public Class Form1
         End If
     End Sub
 
-    Private Sub downloader_StopWork()
-        decThread()
-        If Not testThread() Then
+    Private Sub Downloader_StopWork()
+        DecThread()
+        If Not TestThread() Then
             StartToolStripMenuItem.Text = "Start"
             StartToolStripMenuItem.BackColor = Color.LawnGreen
             EditToolStripMenuItem.Enabled = True
@@ -115,9 +115,9 @@ Public Class Form1
         End If
     End Sub
 
-    Private Sub updateScreen()
+    Private Sub UpdateScreen()
         If Me.InvokeRequired Then
-            Dim d As New updateScreenCallback(AddressOf updateScreen)
+            Dim d As New updateScreenCallback(AddressOf UpdateScreen)
             Me.Invoke(d)
         Else
             If OutputData.Rows.Count > 5000 Then
@@ -158,7 +158,7 @@ Public Class Form1
             Dim res As String = AshbyTools.FileOperations.deleteFromSP(copyFN, library.URL, library.Share, Username, Password)
             newDetailRow("Result") = res
             displayTable.Rows.Add(newDetailRow)
-            updateScreen()
+            UpdateScreen()
             SyncLock Me
                 FiledataTableAdapter.SetUploaded(False, rowID)
             End SyncLock
@@ -207,12 +207,12 @@ Public Class Form1
             newDetailRow("Operation") = "Copy to Sharepoint"
             newDetailRow("Result") = res
             displayTable.Rows.Add(newDetailRow)
-            updateScreen()
+            UpdateScreen()
         Next
     End Sub
 
     Private Sub DoCopy(taskLib As Library)
-        incThread()
+        IncThread()
         Dim newDetailRow As DataRow = displayTable.NewRow()
         newDetailRow("TimeStamp") = Now
         newDetailRow("Original File") = taskLib.SharePointFile
@@ -221,7 +221,7 @@ Public Class Form1
         Dim fs As Stream = FileOperations.loadFromSP(taskLib.SharePointFile, taskLib.URL, taskLib.Share, taskLib.Username, taskLib.Password)
 
         If IsNothing(fs) Then
-            decThread()
+            DecThread()
             newDetailRow("Result") = "Failed"
             displayTable.Rows.Add(newDetailRow)
             SyncLock Me
@@ -230,7 +230,7 @@ Public Class Form1
                 FiledataTableAdapter.setDownloadReadyFlag(False, taskLib.id)
                 FiledataTableAdapter.SetError(True, taskLib.id)
             End SyncLock
-            updateScreen()
+            UpdateScreen()
             Return
         End If
 
@@ -243,8 +243,8 @@ Public Class Form1
         End SyncLock
         newDetailRow("Result") = "Downloaded " & Now.ToShortTimeString
         displayTable.Rows.Add(newDetailRow)
-        updateScreen()
-        decThread()
+        UpdateScreen()
+        DecThread()
     End Sub
 
     Private Sub DownloadFiles()
@@ -304,10 +304,10 @@ Public Class Form1
         Dim downloaderThread As BackgroundWorker = New BackgroundWorker
         uploaderThread.WorkerSupportsCancellation = True
         downloaderThread.WorkerSupportsCancellation = True
-        AddHandler uploaderThread.DoWork, AddressOf uploader_DoWork
-        AddHandler uploaderThread.RunWorkerCompleted, AddressOf uploader_StopWork
-        AddHandler downloaderThread.DoWork, AddressOf downloader_DoWork
-        AddHandler downloaderThread.RunWorkerCompleted, AddressOf downloader_StopWork
+        AddHandler uploaderThread.DoWork, AddressOf Uploader_DoWork
+        AddHandler uploaderThread.RunWorkerCompleted, AddressOf Uploader_StopWork
+        AddHandler downloaderThread.DoWork, AddressOf Downloader_DoWork
+        AddHandler downloaderThread.RunWorkerCompleted, AddressOf Downloader_StopWork
         If StartToolStripMenuItem.Text.Equals("Start") Then
             EditToolStripMenuItem.Enabled = False
             FileToolStripMenuItem.Enabled = False
@@ -341,7 +341,7 @@ Public Class Form1
         End Using
     End Sub
 
-    Private Sub loadLibrary()
+    Private Sub LoadLibrary()
         Using fs As New FileStream(settingsFile, FileMode.Open)
             Dim ser As New XmlSerializer(GetType(Library))
             library = CType(ser.Deserialize(fs), Library)
